@@ -1,0 +1,47 @@
+:root{
+    --bg-color: #FFFFFF;
+    --bg-color-secundary: #9F2241;
+    --bg-color-active: #691C32;
+    --bg-color-cards: #FFF;
+    --tx-color: rgb(43, 41, 41);
+    --txt-color-title: rgb(43, 41, 41);
+    --font-family: 'Poppins', sans-serif;
+}
+
+
+html[data-theme='dark'] {
+    --bg-color: rgb(60, 60, 60);
+    --bg-color-secundary: rgb(43, 41, 41);
+    --bg-color-active: rgb(15, 14, 14);
+    --bg-color-cards: rgb(43, 41, 41);
+    --tx-color: #FFF;
+    --txt-color-title: #FFF
+}
+
+
+html[data-theme='original'] {
+    --bg-color: #FFFFFF;
+    --bg-color-secundary: #9F2241;
+    --bg-color-active: #691C32;
+    --bg-color-cards: #FFF;
+    --tx-color: rgb(43, 41, 41);
+    --txt-color-title: rgb(43, 41, 41);
+}
+
+html[data-theme='blue'] {
+    --bg-color: #FFFFFF;
+    --bg-color-secundary: #4724d3;
+    --bg-color-active: #311895;
+    --bg-color-cards: #FFF;
+    --tx-color: rgb(43, 41, 41);
+    --txt-color-title: rgb(43, 41, 41);
+}
+
+html[data-theme='green'] {
+    --bg-color: #FFFFFF;
+    --bg-color-secundary: #24d350;
+    --bg-color-active: #199939;
+    --bg-color-cards: #FFF;
+    --tx-color: rgb(43, 41, 41);
+    --txt-color-title: rgb(43, 41, 41);
+}
