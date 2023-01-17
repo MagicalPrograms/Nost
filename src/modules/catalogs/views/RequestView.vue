@@ -1,8 +1,14 @@
 <template>
     <div>
         <h3 class="title">Solcitudes</h3>
+        <div class="row mb-2">
+            <div class="col-sm-5">
+                Buscar
+                <input type="text" class="form-control" v-model="term" placeholder="Eje. id, descripcion o dependencia">
+            </div>
+        </div>
         <div class="nost-request-list nost-margins" >   
-            <div v-for="item in requests" class="card nost-list nost-padding" v-b-tooltip.hover :title="item.Dependencie.name">
+            <div v-for="item in requestByTerm" class="card nost-list nost-padding" v-b-tooltip.hover :title="item.Dependencie.name">
                 <div class="row">
                     <div class="col-sm-8 nost-column">
                         <span class="Type" title="Fecha">{{ item.Fechas.Fecha_Impresion }}</span>
@@ -21,7 +27,6 @@
                             <i class="uil uil-trash-alt"></i>
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -111,7 +116,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 import Swal from 'sweetalert2'
 
 export default {
@@ -124,6 +129,7 @@ export default {
         }
 
         return {
+            term: '',
             Date: '',
             main: {
                 Description: ''
@@ -207,7 +213,11 @@ export default {
     },
 
     computed: {
-        ...mapState('catalogs', ['name', 'count', 'requests'])
+        ...mapState('catalogs', ['name', 'count', 'requests']),
+        ...mapGetters('catalogs', ['getRequestByTerm']),
+        requestByTerm() {
+            return this.getRequestByTerm( this.term )
+        }
     },
 }
 </script>

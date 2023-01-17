@@ -184,8 +184,8 @@ export default {
       try{
         this.addNewRequest(this.solicitud)
         Swal.fire(
-          'Good job!',
-          'You clicked the button!',
+          '¡Buen Trabajo!',
+          '¡Se ha guardado la solicitud!',
           'success'
         )
       } catch (error) {
