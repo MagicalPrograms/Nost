@@ -32,7 +32,7 @@
         mounted() {
             console.log(this.data);
         },
-    }
+    } 
 </script>
 
 <style lang="scss" scoped>
