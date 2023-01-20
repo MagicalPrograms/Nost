@@ -18,6 +18,16 @@ export default {
             component: () => import(/* webpackChunkName: "Request" */ '@/modules/catalogs/views/RequestView.vue'),
         },
         {
+            path: '/Edit-Request/:id',
+            name: 'Edit-Request',
+            component: () => import(/* webpackChunkName: "Edit-Request" */ '@/modules/catalogs/views/EditRequestView.vue'),
+        },
+        {
+            path: '/Seguimiento',
+            name: 'Seguimiento',
+            component: () => import(/* webpackChunkName: "Seguimiento" */ '@/modules/catalogs/views/SegimientoView.vue'),
+        },
+        {
             path: '/formats',
             name: 'formats',
             component: () => import(/* webpackChunkName: "formats" */ '@/modules/formatos/views/FormstList.vue'),

@@ -11,19 +11,19 @@
                         <i class="uil uil-chart" ></i>
                         <span>Analiticas</span>
                     </router-link>
-                    <router-link to="Register" class="item item-open" v-b-tooltip.hover.right title="Crear Solicitud">
+                    <router-link to="/Register" class="item item-open" v-b-tooltip.hover.right title="Crear Solicitud">
                         <i class="uil uil-plus-circle" ></i>
                         <span>Crear Solcitud</span>
                     </router-link>
-                    <router-link to="Request" class="item item-open" v-b-tooltip.hover.right title="Solicitudes">
+                    <router-link to="/Request" class="item item-open" v-b-tooltip.hover.right title="Solicitudes">
                         <i class="uil uil-clipboard-notes" ></i>
                         <span>Solicitudes</span>
                     </router-link>
-                    <router-link to="formats" class="item item-open" v-b-tooltip.hover.right title="Formatos">
+                    <router-link to="/formats" class="item item-open" v-b-tooltip.hover.right title="Formatos">
                         <i class="uil uil-file" ></i>
                         <span>Formatos</span>
                     </router-link>
-                    <router-link to="Settings" class="item item-open" v-b-tooltip.hover.right title="Configuración">
+                    <router-link to="/Settings" class="item item-open" v-b-tooltip.hover.right title="Configuración">
                         <i class="uil uil-setting" ></i>
                         <span>Configuración</span>
                     </router-link>

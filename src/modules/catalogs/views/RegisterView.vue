@@ -6,11 +6,11 @@
         <div class="row">
           <div class="col-sm-4">
             Fecha de impresion
-            <b-input class="date" type="date" @change="ValidarFecha" v-model="dateImpresion" ></b-input>
+            <b-input class="date" type="date" @change="ValidarFecha" v-model="main_frame.Fechas.fecha_impresion" ></b-input>
           </div>
           <div class="col-sm-4">
-            Tipo de solicitud
-            <v-select label="name" :options="OptionsDependencie" v-model="SelectDependencie" >
+            Dependencia responsable
+            <v-select label="name" :options="OptionsDependencie" v-model="main_frame.Dependencia" >
               <div slot="no-options">No se encontraron opciones</div>
             </v-select>
           </div>
@@ -22,13 +22,13 @@
           </div>
           <div class="col-sm-4">
             Tipo de solicitud
-            <v-select label="name" :options="OptionsType" v-model="SelectType" >
+            <v-select label="name" :options="OptionsType" v-model="main_frame.Tipo" >
               <div slot="no-options">No se encontraron opciones</div>
             </v-select>
           </div>
           <div class="col-sm-4">
             <i class="uil uil-accessible-icon-alt" style="color: dodgerblue"> Formato de accesibilidad</i>
-            <v-select label="name" :options="OptionsDiscapacidad" v-model="SelectDiscapacidad" >
+            <v-select label="name" :options="OptionsDiscapacidad" v-model="main_frame.Accesibilidad" >
               <div slot="no-options">No se encontraron opciones</div>
             </v-select>
           </div>
@@ -36,7 +36,7 @@
         <div class="row">
           <div class="col-sm-4">
             Medio para recibir notificaciones
-            <v-select label="name" :options="OptionsRespuestas" v-model="SelectRespuestas" >
+            <v-select label="name" :options="OptionsRespuestas" v-model="main_frame.Recepcion" >
               <div slot="no-options">No se encontraron opciones</div>
             </v-select>
           </div>
@@ -52,25 +52,25 @@
         <div class="row">
           <div class="col-sm-6">
             Datos de la solicitud
-            <b-textarea v-model="main_frame.Solicitud" class="ta-solicitud"></b-textarea>
+            <b-textarea v-model="main_frame.Descripcion" class="ta-solicitud"></b-textarea>
           </div>
           <div class="col-sm-6">
             Datos adicionales
-            <b-textarea v-model="main_frame.DatosAdicionales" ></b-textarea>
+            <b-textarea v-model="main_frame.DescripcionAdicional" ></b-textarea>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4">
             Respuesta a su solicitud
-            <b-input class="date" type="date" v-model="dateRespuesta"/>
+            <b-input class="date" type="date" v-model="main_frame.Fechas.fecha_respuesta"/>
           </div>
           <div class="col-sm-4">
             Fecha de aclaracion
-            <b-input class="date" type="date" v-model="dateAclaracion"/>
+            <b-input class="date" type="date" v-model="main_frame.Fechas.fecha_aclaracion"/>
           </div>
           <div class="col-sm-4">
             Fecha de prórroga
-            <b-input class="date" type="date" v-model="dateProrroga"/>
+            <b-input class="date" type="date" v-model="main_frame.Fechas.fecha_prorroga"/>
           </div>
         </div>
         <div class="row" style="font-size: 14px">
@@ -95,69 +95,42 @@ export default {
     'v-select': select
   },
   data(){
-    const Date = ''
-    const solicitud = {}
-
     const main_frame = {
       id: '',
+      Descripcion: '',
+      DescripcionAdicional: '',
       correo: '',
-      Solicitud: '',
-      DatosAdicionales: ''
+      Dependencia: {
+          id: 0,
+          name: ''
+      },
+      Tipo: {
+          id: 0,
+          name: ''
+      },
+      Accesibilidad: {
+          id: 0,
+          name: ''
+      },
+      Recepcion: {
+          id: 0,
+          name: ''
+      },
+      Fechas: {
+          fecha_impresion: '',
+          fecha_aclaracion: '',
+          fecha_prorroga: '',
+          fecha_respuesta: ''
+      }
     }
-
-    const SelectType = { name: '-- Seleccióna un Tipo --', id: 0 }
-    const OptionsType = [
-      { name: '-- Seleccióna un Tipo --', id: 0 },
-      { name: 'Información Pública', id: 1 },
-      { name: 'Datos Personales', id: 2 }
-    ]
     
-    const SelectDiscapacidad = { name: '-- Seleccióna una accesibilidad --', id: 0 }
-    const OptionsDiscapacidad = [
-      { name: '-- Seleccióna una accesibilidad --', id: 0 },
-      { name: 'Auditiva', id: 1 },
-      { name: 'Visual', id: 2 }
-    ]
-
-    const SelectRespuestas = { name: '-- Seleccióna un medio --', id: 0 }
-    const OptionsRespuestas = [
-      { name: '-- Seleccióna un medio --', id: 0 },
-      { name: 'Información disponible via PNT', id: 1 },
-      { name: 'Correo electronico', id: 2 }
-    ]
-    
-    const SelectDependencie = { name: '-- Seleccióna una Dependencia --', id: 0 }
-    const OptionsDependencie = [
-      { name: '-- Seleccióna una Dependencia --', id: 0 },
-      { name: 'Dirección de la Unidad de Transparencia', id: 1 },
-      { name: 'Dirección de ingresos', id: 2 },
-      { name: 'Dirección de informatica', id: 3 },
-      { name: 'Dirección de planiación', id: 4 }
-    ]
-
     return {
       main_frame,
-      OptionsType,
-      SelectType,
-      SelectDiscapacidad,
-      OptionsDiscapacidad,
-      SelectRespuestas,
-      OptionsRespuestas,
-      SelectDependencie,
-      OptionsDependencie,
-      solicitud,
-      dateImpresion: '',
-      dateRespuesta: '',
-      dateAclaracion: '',
-      dateProrroga: '',
-      id: '',
-      Description: '',
-      Datos: []
     }
   },
 
   computed: {
-    ...mapState('catalogs', ['Request'])
+    ...mapState('catalogs', ['Request', 'OptionsType', 'OptionsDiscapacidad', 'OptionsRespuestas', 'OptionsDependencie'])
   },
   
   methods: {
@@ -166,23 +139,9 @@ export default {
 
 
     async SaveData() {
-      this.solicitud = {
-        main_frame: this.main_frame,
-        TypeId: this.SelectType.id,
-        TypeName: this.SelectType.name,
-        DependencieID: this.SelectDependencie.id,
-        DependencieName: this.SelectDependencie.name,
-        Discapacidad: this.SelectDiscapacidad.id,
-        Medio: this.SelectRespuestas.id,
-        Fecha_Impresion: this.dateImpresion,
-        Fecha_Respuesta: this.dateRespuesta,
-        Fecha_Aclaracion: this.dateAclaracion,
-        Fecha_Prorroga: this.dateProrroga
-      }
-
       //const ok = await this.SaveRequest(this.solicitud)
       try{
-        this.addNewRequest(this.solicitud)
+        this.addNewRequest(this.main_frame)
         Swal.fire(
           '¡Buen Trabajo!',
           '¡Se ha guardado la solicitud!',
@@ -198,7 +157,7 @@ export default {
     },
 
     ValidarFecha() {
-      if(Date.parse(this.dateImpresion) > Date.parse(this.Date)) {
+      if(Date.parse(this.main_frame.Fechas.fecha_impresion) > Date.parse(this.Date)) {
         Swal.fire(
           '¡Alerta!',
           '¡No puedes elegir una fecha posterior a la de hoy!',
@@ -206,7 +165,7 @@ export default {
         )
       }
 
-      this.dateImpresion = this.Date
+      this.main_frame.Fechas.fecha_impresion = this.Date
     }
   },
 
@@ -221,13 +180,18 @@ export default {
       month = `0${month}`;
     }
     const year = fecha.getFullYear();
-    
+
     this.Date = `${ year }-${ month }-${ day }`
-    this.dateImpresion = `${ year }-${ month }-${ day }`
-    this.dateRespuesta = `${ year }-${ month }-${ day }`
-    this.dateAclaracion = `${ year }-${ month }-${ day }`
-    this.dateProrroga = `${ year }-${ month }-${ day }`
-    
+    this.main_frame.Fechas.fecha_impresion = `${ year }-${ month }-${ day }`
+    this.main_frame.Fechas.fecha_aclaracion = `${ year }-${ month }-${ day }`
+    this.main_frame.Fechas.fecha_prorroga = `${ year }-${ month }-${ day }`
+    this.main_frame.Fechas.fecha_respuesta = `${ year }-${ month }-${ day }`
+
+
+    this.main_frame.Dependencia = this.OptionsDependencie[0]
+    this.main_frame.Tipo = this.OptionsType[0]
+    this.main_frame.Accesibilidad = this.OptionsDiscapacidad[0]
+    this.main_frame.Recepcion = this.OptionsRespuestas[0]
   }
 }
 </script>

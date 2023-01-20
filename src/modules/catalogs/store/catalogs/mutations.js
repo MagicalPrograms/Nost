@@ -3,22 +3,33 @@
 //ejemplo es como si fueran metodos internos 
 
 export const addNewRequest = ( state, main ) => {
+    console.log(main);
     state.requests.push({
-        id: main.main_frame.id,
-        Description: main.main_frame.Solicitud,
-        Type: {
-            id: main.TypeId,
-            name: main.TypeName
+        id: main.id,
+        Descripcion: main.Descripcion,
+        DescripcionAdicional: main.DescripcionAdicional,
+        correo: main.correo,
+        Dependencia: {
+            id: main.Dependencia.id,
+            name: main.Dependencia.name
         },
-        Dependencie: {
-            id: main.DependencieID,
-            name: main.DependencieName
+        Tipo: {
+            id: main.Tipo.id,
+            name: main.Tipo.name
+        },
+        Accesibilidad: {
+            id: main.Accesibilidad.id,
+            name: main.Accesibilidad.name
+        },
+        Recepcion: {
+            id: main.Recepcion.id,
+            name: main.Recepcion.name
         },
         Fechas: {
-            Fecha_Impresion: main.Fecha_Impresion,
-            Fecha_Respuesta: main.Fecha_Respuesta,
-            Fecha_Aclaracion: main.Fecha_Aclaracion,
-            Fecha_Prorroga: main.Fecha_Prorroga
+            fecha_impresion: main.Fechas.fecha_impresion,
+            fecha_aclaracion: main.Fechas.fecha_aclaracion,
+            fecha_prorroga: main.Fechas.fecha_prorroga,
+            fecha_respuesta: main.Fechas.fecha_respuesta
         }
         
     })
