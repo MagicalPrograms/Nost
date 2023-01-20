@@ -518,3 +518,173 @@ You're about to initialize a Firebase project in this directory:
     at process.processTimers (node:internal/timers:507:7)
 [error] 
 [error] Error: An unexpected error has occurred.
+[debug] [2023-01-20T21:33:56.051Z] ----------------------------------------------------------------------
+[debug] [2023-01-20T21:33:56.055Z] Command:       /Users/briansauceda/.nvm/versions/node/v18.12.1/bin/node /Users/briansauceda/.nvm/versions/node/v12.22.5/bin/firebase deploy
+[debug] [2023-01-20T21:33:56.056Z] CLI Version:   11.20.0
+[debug] [2023-01-20T21:33:56.056Z] Platform:      darwin
+[debug] [2023-01-20T21:33:56.056Z] Node Version:  v18.12.1
+[debug] [2023-01-20T21:33:56.109Z] Time:          Fri Jan 20 2023 14:33:56 GMT-0700 (hora estándar del Pacífico de México)
+[debug] [2023-01-20T21:33:56.110Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-20T21:33:56.124Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-01-20T21:33:56.346Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-20T21:33:56.347Z] > authorizing via signed-in user (briansauceda17@gmail.com)
+[debug] [2023-01-20T21:33:56.347Z] [iam] checking project nost-beta for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-01-20T21:33:56.349Z] > refreshing access token with scopes: []
+[debug] [2023-01-20T21:33:56.350Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-20T21:33:56.351Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-20T21:33:56.579Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-01-20T21:33:56.580Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-01-20T21:33:56.924Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-01-20T21:33:56.925Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-20T21:33:57.102Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/nost-beta:testIamPermissions [none]
+[debug] [2023-01-20T21:33:57.102Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/nost-beta:testIamPermissions x-goog-quota-user=projects/nost-beta
+[debug] [2023-01-20T21:33:57.102Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nost-beta:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-20T21:33:57.521Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/nost-beta:testIamPermissions 200
+[debug] [2023-01-20T21:33:57.521Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nost-beta:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-20T21:33:57.523Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nost-beta [none]
+[debug] [2023-01-20T21:33:58.055Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nost-beta 200
+[debug] [2023-01-20T21:33:58.055Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nost-beta {"projectId":"nost-beta","projectNumber":"586716879771","displayName":"Nost","name":"projects/nost-beta","resources":{"hostingSite":"nost-beta"},"state":"ACTIVE","etag":"1_8b8de96f-fe3d-4783-bac9-6d2df8b358d7"}
+[info] 
+[info] === Deploying to 'nost-beta'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2023-01-20T21:33:58.103Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/versions [none]
+[debug] [2023-01-20T21:33:58.104Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-01-20T21:33:58.987Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/versions 200
+[debug] [2023-01-20T21:33:58.987Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/versions {"name":"projects/586716879771/sites/nost-beta/versions/0a293f150a14b2f0","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[nost-beta]: beginning deploy... 
+[info] i  hosting[nost-beta]: found 39 files in dist 
+[debug] [2023-01-20T21:34:28.260Z] [hosting] uploading with 200 concurrency
+[debug] [2023-01-20T21:34:29.053Z] [hosting] hash cache [ZGlzdA] stored for 39 files
+[debug] [2023-01-20T21:34:29.054Z] [hosting][hash queue][FINAL] {"max":636,"min":90,"avg":138.05128205128204,"active":0,"complete":39,"success":39,"errored":0,"retried":0,"total":39,"elapsed":693}
+[debug] [2023-01-20T21:34:29.055Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/586716879771/sites/nost-beta/versions/0a293f150a14b2f0:populateFiles [none]
+[debug] [2023-01-20T21:34:29.055Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586716879771/sites/nost-beta/versions/0a293f150a14b2f0:populateFiles {"files":{"/css/Analytics.3bf5c2a6.css":"2a1d8d9ab18484e6b426baaf0e97155ae9c926e6fe39266ce21799694c1fc973","/css/HomeLayout.a9cba2d6.css":"089ba04127491cb0738b15ac1a15e0abbbe41d462bb7d495ee1d3ba973714488","/css/Request.46af448c.css":"99e69ff4dff4b30213e71829c88ec068a62266fe976e29e6214b22ec1bc5ad74","/css/Register.152b31b7.css":"67c3dbe1ea69cd7158c849eb6622090dbff67bcb54bb239bddf7b8e238dbe288","/css/Edit-Request.d0184d5a.css":"04ac5f0368a6e96727c03336da485236ac037b7697b4b402da8a574487245ea6","/css/app.2f8c03d9.css":"b089d0a72b7e180e71d23cdb126d96587b71f1ae9acb7e2afc7f5b03e7734e86","/css/formats.6eb5f2b9.css":"a1177d0c6d7dedd3bdc5566f87ed28fc7c4a80d12633bd0945eb5c8e079b60ff","/js/288.002c3e38.js":"54ecf8af8960077f05808b3d4e7b659c3ee0bc257794c295d1009c8814c5ae7f","/favicon.ico":"1e71457865f706dc865b49a54a86e193818220d290b30226b6630a42faf1535d","/index.html":"c687d4abc61110df9fc46117e2f02a48b881b66d3353859e81a851eea1d52566","/js/Edit-Request.8d29fe49.js":"9e719007a730e6eed781fe57ab5919c29d002e5845b41da9bbd0f43b79f1b9b7","/css/Settings.7558cde0.css":"f4370e737ca5a5336528d49ede698d5c2618067f4ababb439b1392f32697c7eb","/js/HomeLayout.08606a36.js":"2c4be8141f186286db143289fb5803a289df917a710f7cb6c1eb668e60463dff","/js/Register.53526919.js":"31c859cf6c4c11c31373cd6283a92a4f4c880f3d06ea4f6c7498a4698433fa30","/js/Request.24bea5e6.js":"f6dbf5f9795961cee223d6e4c2b7445facf456bc50f0b3e659d163845d17b6b7","/js/Edit-Request.8d29fe49.js.map":"c6b8a9cf3aede89861cc00e72f52dc71e278c0225061b9ae7bc60f09330fae6f","/js/Seguimiento.dd090819.js":"387c0136e6b5ad9cb8739723c5af8c3278ba32a81dec816bacaef03abd687863","/js/Seguimiento.dd090819.js.map":"80c1ce9c52b5deeffba957fe44be6739f6d4c9f613016660d4260c5146b0f2d7","/js/Request.24bea5e6.js.map":"e3b4d5f71966331e88e062e4af863b854c8cc0ef9cc37ab08d971fb87b0cab10","/js/Settings.8314a581.js":"14b469272a5a022fbb874bd9f1bc1375144acc4f369e61b8b525c6f695ea4035","/js/about.acd2d507.js":"80e55948dd5566e57fd3adadc39147184ee2dbb6206f08f75e5d718aca79c612","/js/about.acd2d507.js.map":"b5f087096dfdd89360d76bb4ad5e2c33e966b752aec4365fdc53597f4818c5fa","/js/288.002c3e38.js.map":"0db68abcd66e6992649af120aef16e34c6edc9df8df0ec44491f2d5d5a890d50","/js/app.0e0a72c6.js":"3bf6b227faf4ab92b5b0ab595dceab72c05751937ac1c90a2eace8265206ec76","/js/HomeLayout.08606a36.js.map":"8548f5e9e48c9166fb35ec0394cca9339da4b4a0b0b96e88b5bfcce92c13ee1f","/js/formats.ee07182c.js":"1db95688c679ca66661f37300f0331ac08a734b1b746e115ee4b806c325f54fa","/js/Register.53526919.js.map":"f4770dc87b2d1fcb890aac61979b62c43a94d4c6d1f030ec23a37074484ae080","/js/app.0e0a72c6.js.map":"9bf1fff35756dbe9a0bed1f9a7b0f4d052a5e723e288d53db303976e8903e243","/js/Settings.8314a581.js.map":"6686ed1ceca1e29efbf682d16c64d4490c339c4aa7adabcec8a5912a8ae81a3e","/js/formats.ee07182c.js.map":"ec64aaefbcd9f27f1946b3c0c54f1e898197b629bfcf892f2ac585d99c0d5e5a","/notificacion.png":"3f50d5ca869b06fa9a4f7a944bffc9341ac689e1f2fc3f4ac4fdc7ad2c731c41","/js/347.dce340e3.js":"7b941aed1085f38a04b4c6cde2731f6a0ac6bfb1a4aa29b3317f94eba1e0496a","/img/notificacion.5deb3a5a.png":"3f50d5ca869b06fa9a4f7a944bffc9341ac689e1f2fc3f4ac4fdc7ad2c731c41","/css/chunk-vendors.269fb860.css":"6b9448025db84f50f29db7f37eb7ba47348bdb76f4a40834db266b07f93caecd","/js/347.dce340e3.js.map":"a3fa592b17d234c53b29c375682523da9b77b9511482313e5cdeec6a6be1687f","/js/Analytics.3055eee7.js":"4670886eaad276a9a25db3e2802263b1a15b16debe6455f73c04680087dd0e40","/js/chunk-vendors.430c3ae5.js":"a781002b7abb71c01841c81d69f17193c3ac0097a75d3a2c9b1c016cc445ced2","/js/Analytics.3055eee7.js.map":"0a9f5368c70c0b8375b393aa529aba8abade0f50f00cd0ea3d41cb3b38070957","/js/chunk-vendors.430c3ae5.js.map":"3613be460c59fd83a0d9382e0a0f0ff2ed78ea8783ed7a69208c171e866effe9"}}
+[debug] [2023-01-20T21:34:29.704Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/586716879771/sites/nost-beta/versions/0a293f150a14b2f0:populateFiles 200
+[debug] [2023-01-20T21:34:29.704Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586716879771/sites/nost-beta/versions/0a293f150a14b2f0:populateFiles {"uploadRequiredHashes":["0db68abcd66e6992649af120aef16e34c6edc9df8df0ec44491f2d5d5a890d50","9e719007a730e6eed781fe57ab5919c29d002e5845b41da9bbd0f43b79f1b9b7","f6dbf5f9795961cee223d6e4c2b7445facf456bc50f0b3e659d163845d17b6b7","0a9f5368c70c0b8375b393aa529aba8abade0f50f00cd0ea3d41cb3b38070957","3bf6b227faf4ab92b5b0ab595dceab72c05751937ac1c90a2eace8265206ec76","c687d4abc61110df9fc46117e2f02a48b881b66d3353859e81a851eea1d52566","e3b4d5f71966331e88e062e4af863b854c8cc0ef9cc37ab08d971fb87b0cab10","9bf1fff35756dbe9a0bed1f9a7b0f4d052a5e723e288d53db303976e8903e243","c6b8a9cf3aede89861cc00e72f52dc71e278c0225061b9ae7bc60f09330fae6f","4670886eaad276a9a25db3e2802263b1a15b16debe6455f73c04680087dd0e40","2c4be8141f186286db143289fb5803a289df917a710f7cb6c1eb668e60463dff","99e69ff4dff4b30213e71829c88ec068a62266fe976e29e6214b22ec1bc5ad74","80c1ce9c52b5deeffba957fe44be6739f6d4c9f613016660d4260c5146b0f2d7","387c0136e6b5ad9cb8739723c5af8c3278ba32a81dec816bacaef03abd687863","54ecf8af8960077f05808b3d4e7b659c3ee0bc257794c295d1009c8814c5ae7f","31c859cf6c4c11c31373cd6283a92a4f4c880f3d06ea4f6c7498a4698433fa30","f4770dc87b2d1fcb890aac61979b62c43a94d4c6d1f030ec23a37074484ae080","04ac5f0368a6e96727c03336da485236ac037b7697b4b402da8a574487245ea6","8548f5e9e48c9166fb35ec0394cca9339da4b4a0b0b96e88b5bfcce92c13ee1f"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files"}
+[debug] [2023-01-20T21:34:29.710Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/0db68abcd66e6992649af120aef16e34c6edc9df8df0ec44491f2d5d5a890d50 [none]
+[debug] [2023-01-20T21:34:29.710Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/0db68abcd66e6992649af120aef16e34c6edc9df8df0ec44491f2d5d5a890d50 [stream]
+[debug] [2023-01-20T21:34:29.712Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/9e719007a730e6eed781fe57ab5919c29d002e5845b41da9bbd0f43b79f1b9b7 [none]
+[debug] [2023-01-20T21:34:29.712Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/9e719007a730e6eed781fe57ab5919c29d002e5845b41da9bbd0f43b79f1b9b7 [stream]
+[debug] [2023-01-20T21:34:29.714Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/f6dbf5f9795961cee223d6e4c2b7445facf456bc50f0b3e659d163845d17b6b7 [none]
+[debug] [2023-01-20T21:34:29.714Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/f6dbf5f9795961cee223d6e4c2b7445facf456bc50f0b3e659d163845d17b6b7 [stream]
+[debug] [2023-01-20T21:34:29.716Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/0a9f5368c70c0b8375b393aa529aba8abade0f50f00cd0ea3d41cb3b38070957 [none]
+[debug] [2023-01-20T21:34:29.716Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/0a9f5368c70c0b8375b393aa529aba8abade0f50f00cd0ea3d41cb3b38070957 [stream]
+[debug] [2023-01-20T21:34:29.717Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/3bf6b227faf4ab92b5b0ab595dceab72c05751937ac1c90a2eace8265206ec76 [none]
+[debug] [2023-01-20T21:34:29.717Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/3bf6b227faf4ab92b5b0ab595dceab72c05751937ac1c90a2eace8265206ec76 [stream]
+[debug] [2023-01-20T21:34:29.719Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/c687d4abc61110df9fc46117e2f02a48b881b66d3353859e81a851eea1d52566 [none]
+[debug] [2023-01-20T21:34:29.719Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/c687d4abc61110df9fc46117e2f02a48b881b66d3353859e81a851eea1d52566 [stream]
+[debug] [2023-01-20T21:34:29.720Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/e3b4d5f71966331e88e062e4af863b854c8cc0ef9cc37ab08d971fb87b0cab10 [none]
+[debug] [2023-01-20T21:34:29.720Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/e3b4d5f71966331e88e062e4af863b854c8cc0ef9cc37ab08d971fb87b0cab10 [stream]
+[debug] [2023-01-20T21:34:29.722Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/9bf1fff35756dbe9a0bed1f9a7b0f4d052a5e723e288d53db303976e8903e243 [none]
+[debug] [2023-01-20T21:34:29.722Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/9bf1fff35756dbe9a0bed1f9a7b0f4d052a5e723e288d53db303976e8903e243 [stream]
+[debug] [2023-01-20T21:34:29.723Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/c6b8a9cf3aede89861cc00e72f52dc71e278c0225061b9ae7bc60f09330fae6f [none]
+[debug] [2023-01-20T21:34:29.723Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/c6b8a9cf3aede89861cc00e72f52dc71e278c0225061b9ae7bc60f09330fae6f [stream]
+[debug] [2023-01-20T21:34:29.726Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/4670886eaad276a9a25db3e2802263b1a15b16debe6455f73c04680087dd0e40 [none]
+[debug] [2023-01-20T21:34:29.726Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/4670886eaad276a9a25db3e2802263b1a15b16debe6455f73c04680087dd0e40 [stream]
+[debug] [2023-01-20T21:34:29.727Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/2c4be8141f186286db143289fb5803a289df917a710f7cb6c1eb668e60463dff [none]
+[debug] [2023-01-20T21:34:29.728Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/2c4be8141f186286db143289fb5803a289df917a710f7cb6c1eb668e60463dff [stream]
+[debug] [2023-01-20T21:34:29.729Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/99e69ff4dff4b30213e71829c88ec068a62266fe976e29e6214b22ec1bc5ad74 [none]
+[debug] [2023-01-20T21:34:29.729Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/99e69ff4dff4b30213e71829c88ec068a62266fe976e29e6214b22ec1bc5ad74 [stream]
+[debug] [2023-01-20T21:34:29.730Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/80c1ce9c52b5deeffba957fe44be6739f6d4c9f613016660d4260c5146b0f2d7 [none]
+[debug] [2023-01-20T21:34:29.731Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/80c1ce9c52b5deeffba957fe44be6739f6d4c9f613016660d4260c5146b0f2d7 [stream]
+[debug] [2023-01-20T21:34:29.732Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/387c0136e6b5ad9cb8739723c5af8c3278ba32a81dec816bacaef03abd687863 [none]
+[debug] [2023-01-20T21:34:29.732Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/387c0136e6b5ad9cb8739723c5af8c3278ba32a81dec816bacaef03abd687863 [stream]
+[debug] [2023-01-20T21:34:29.733Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/54ecf8af8960077f05808b3d4e7b659c3ee0bc257794c295d1009c8814c5ae7f [none]
+[debug] [2023-01-20T21:34:29.733Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/54ecf8af8960077f05808b3d4e7b659c3ee0bc257794c295d1009c8814c5ae7f [stream]
+[debug] [2023-01-20T21:34:29.735Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/31c859cf6c4c11c31373cd6283a92a4f4c880f3d06ea4f6c7498a4698433fa30 [none]
+[debug] [2023-01-20T21:34:29.735Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/31c859cf6c4c11c31373cd6283a92a4f4c880f3d06ea4f6c7498a4698433fa30 [stream]
+[debug] [2023-01-20T21:34:29.736Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/f4770dc87b2d1fcb890aac61979b62c43a94d4c6d1f030ec23a37074484ae080 [none]
+[debug] [2023-01-20T21:34:29.736Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/f4770dc87b2d1fcb890aac61979b62c43a94d4c6d1f030ec23a37074484ae080 [stream]
+[debug] [2023-01-20T21:34:29.738Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/04ac5f0368a6e96727c03336da485236ac037b7697b4b402da8a574487245ea6 [none]
+[debug] [2023-01-20T21:34:29.738Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/04ac5f0368a6e96727c03336da485236ac037b7697b4b402da8a574487245ea6 [stream]
+[debug] [2023-01-20T21:34:29.739Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/8548f5e9e48c9166fb35ec0394cca9339da4b4a0b0b96e88b5bfcce92c13ee1f [none]
+[debug] [2023-01-20T21:34:29.739Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/8548f5e9e48c9166fb35ec0394cca9339da4b4a0b0b96e88b5bfcce92c13ee1f [stream]
+[debug] [2023-01-20T21:34:29.743Z] [hosting][populate queue][FINAL] {"max":699,"min":699,"avg":699,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":732}
+[debug] [2023-01-20T21:34:29.743Z] [hosting] uploads queued: 19
+[debug] [2023-01-20T21:34:30.634Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/f6dbf5f9795961cee223d6e4c2b7445facf456bc50f0b3e659d163845d17b6b7 200
+[debug] [2023-01-20T21:34:30.634Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/f6dbf5f9795961cee223d6e4c2b7445facf456bc50f0b3e659d163845d17b6b7 [stream]
+[debug] [2023-01-20T21:34:30.696Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/9e719007a730e6eed781fe57ab5919c29d002e5845b41da9bbd0f43b79f1b9b7 200
+[debug] [2023-01-20T21:34:30.697Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/9e719007a730e6eed781fe57ab5919c29d002e5845b41da9bbd0f43b79f1b9b7 [stream]
+[debug] [2023-01-20T21:34:30.707Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/99e69ff4dff4b30213e71829c88ec068a62266fe976e29e6214b22ec1bc5ad74 200
+[debug] [2023-01-20T21:34:30.707Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/99e69ff4dff4b30213e71829c88ec068a62266fe976e29e6214b22ec1bc5ad74 [stream]
+[debug] [2023-01-20T21:34:30.708Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/3bf6b227faf4ab92b5b0ab595dceab72c05751937ac1c90a2eace8265206ec76 200
+[debug] [2023-01-20T21:34:30.709Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/3bf6b227faf4ab92b5b0ab595dceab72c05751937ac1c90a2eace8265206ec76 [stream]
+[debug] [2023-01-20T21:34:30.711Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/31c859cf6c4c11c31373cd6283a92a4f4c880f3d06ea4f6c7498a4698433fa30 200
+[debug] [2023-01-20T21:34:30.711Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/31c859cf6c4c11c31373cd6283a92a4f4c880f3d06ea4f6c7498a4698433fa30 [stream]
+[debug] [2023-01-20T21:34:30.762Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/e3b4d5f71966331e88e062e4af863b854c8cc0ef9cc37ab08d971fb87b0cab10 200
+[debug] [2023-01-20T21:34:30.763Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/e3b4d5f71966331e88e062e4af863b854c8cc0ef9cc37ab08d971fb87b0cab10 [stream]
+[debug] [2023-01-20T21:34:30.776Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/387c0136e6b5ad9cb8739723c5af8c3278ba32a81dec816bacaef03abd687863 200
+[debug] [2023-01-20T21:34:30.776Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/387c0136e6b5ad9cb8739723c5af8c3278ba32a81dec816bacaef03abd687863 [stream]
+[debug] [2023-01-20T21:34:30.786Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/c6b8a9cf3aede89861cc00e72f52dc71e278c0225061b9ae7bc60f09330fae6f 200
+[debug] [2023-01-20T21:34:30.787Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/c6b8a9cf3aede89861cc00e72f52dc71e278c0225061b9ae7bc60f09330fae6f [stream]
+[debug] [2023-01-20T21:34:30.803Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/8548f5e9e48c9166fb35ec0394cca9339da4b4a0b0b96e88b5bfcce92c13ee1f 200
+[debug] [2023-01-20T21:34:30.803Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/8548f5e9e48c9166fb35ec0394cca9339da4b4a0b0b96e88b5bfcce92c13ee1f [stream]
+[debug] [2023-01-20T21:34:30.870Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/04ac5f0368a6e96727c03336da485236ac037b7697b4b402da8a574487245ea6 200
+[debug] [2023-01-20T21:34:30.870Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/04ac5f0368a6e96727c03336da485236ac037b7697b4b402da8a574487245ea6 [stream]
+[debug] [2023-01-20T21:34:30.904Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/2c4be8141f186286db143289fb5803a289df917a710f7cb6c1eb668e60463dff 200
+[debug] [2023-01-20T21:34:30.904Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/2c4be8141f186286db143289fb5803a289df917a710f7cb6c1eb668e60463dff [stream]
+[debug] [2023-01-20T21:34:30.912Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/c687d4abc61110df9fc46117e2f02a48b881b66d3353859e81a851eea1d52566 200
+[debug] [2023-01-20T21:34:30.912Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/c687d4abc61110df9fc46117e2f02a48b881b66d3353859e81a851eea1d52566 [stream]
+[debug] [2023-01-20T21:34:30.913Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/9bf1fff35756dbe9a0bed1f9a7b0f4d052a5e723e288d53db303976e8903e243 200
+[debug] [2023-01-20T21:34:30.914Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/9bf1fff35756dbe9a0bed1f9a7b0f4d052a5e723e288d53db303976e8903e243 [stream]
+[debug] [2023-01-20T21:34:30.918Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/54ecf8af8960077f05808b3d4e7b659c3ee0bc257794c295d1009c8814c5ae7f 200
+[debug] [2023-01-20T21:34:30.918Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/54ecf8af8960077f05808b3d4e7b659c3ee0bc257794c295d1009c8814c5ae7f [stream]
+[debug] [2023-01-20T21:34:30.935Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/f4770dc87b2d1fcb890aac61979b62c43a94d4c6d1f030ec23a37074484ae080 200
+[debug] [2023-01-20T21:34:30.935Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/f4770dc87b2d1fcb890aac61979b62c43a94d4c6d1f030ec23a37074484ae080 [stream]
+[debug] [2023-01-20T21:34:30.960Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/0db68abcd66e6992649af120aef16e34c6edc9df8df0ec44491f2d5d5a890d50 200
+[debug] [2023-01-20T21:34:30.960Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/0db68abcd66e6992649af120aef16e34c6edc9df8df0ec44491f2d5d5a890d50 [stream]
+[debug] [2023-01-20T21:34:30.961Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/80c1ce9c52b5deeffba957fe44be6739f6d4c9f613016660d4260c5146b0f2d7 200
+[debug] [2023-01-20T21:34:30.962Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/80c1ce9c52b5deeffba957fe44be6739f6d4c9f613016660d4260c5146b0f2d7 [stream]
+[debug] [2023-01-20T21:34:32.186Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/0a9f5368c70c0b8375b393aa529aba8abade0f50f00cd0ea3d41cb3b38070957 200
+[debug] [2023-01-20T21:34:32.186Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/0a9f5368c70c0b8375b393aa529aba8abade0f50f00cd0ea3d41cb3b38070957 [stream]
+[debug] [2023-01-20T21:34:32.664Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/4670886eaad276a9a25db3e2802263b1a15b16debe6455f73c04680087dd0e40 200
+[debug] [2023-01-20T21:34:32.664Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nost-beta/versions/0a293f150a14b2f0/files/4670886eaad276a9a25db3e2802263b1a15b16debe6455f73c04680087dd0e40 [stream]
+[debug] [2023-01-20T21:34:32.664Z] [hosting][upload queue][FINAL] {"max":2956,"min":929,"avg":1282.8947368421052,"active":0,"complete":19,"success":19,"errored":0,"retried":0,"total":19,"elapsed":2959}
+[info] ✔  hosting[nost-beta]: file upload complete 
+[debug] [2023-01-20T21:34:32.666Z] [hosting] deploy completed after 4501ms
+[debug] [2023-01-20T21:34:32.670Z] [
+  {
+    "config": {
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "nost-beta"
+    },
+    "version": "projects/586716879771/sites/nost-beta/versions/0a293f150a14b2f0"
+  }
+]
+[info] i  hosting[nost-beta]: finalizing version... 
+[debug] [2023-01-20T21:34:32.674Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/versions/0a293f150a14b2f0 updateMask=status%2Cconfig
+[debug] [2023-01-20T21:34:32.674Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/versions/0a293f150a14b2f0 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2023-01-20T21:34:33.293Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/versions/0a293f150a14b2f0 200
+[debug] [2023-01-20T21:34:33.293Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/versions/0a293f150a14b2f0 {"name":"projects/586716879771/sites/nost-beta/versions/0a293f150a14b2f0","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-01-20T21:33:58.624185Z","createUser":{"email":"briansauceda17@gmail.com"},"finalizeTime":"2023-01-20T21:34:33.207143Z","finalizeUser":{"email":"briansauceda17@gmail.com"}}
+[debug] [2023-01-20T21:34:33.293Z] [hosting] finalized version for nost-beta:[object Object]
+[info] ✔  hosting[nost-beta]: version finalized 
+[info] i  hosting[nost-beta]: releasing new version... 
+[debug] [2023-01-20T21:34:33.294Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/channels/live/releases versionName=projects%2F586716879771%2Fsites%2Fnost-beta%2Fversions%2F0a293f150a14b2f0
+[debug] [2023-01-20T21:34:33.294Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/channels/live/releases {}
+[debug] [2023-01-20T21:34:33.905Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/channels/live/releases 200
+[debug] [2023-01-20T21:34:33.905Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nost-beta/channels/live/releases {"name":"projects/586716879771/sites/nost-beta/channels/live/releases/1674250473237751","version":{"name":"projects/586716879771/sites/nost-beta/versions/0a293f150a14b2f0","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-01-20T21:33:58.624185Z","createUser":{"email":"briansauceda17@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp6g6fAkvzSVik14UKx3U-ATlQ3l7A1BAZ-hZrUC1Q"},"finalizeTime":"2023-01-20T21:34:33.207143Z","finalizeUser":{"email":"briansauceda17@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp6g6fAkvzSVik14UKx3U-ATlQ3l7A1BAZ-hZrUC1Q"}},"type":"DEPLOY","releaseTime":"2023-01-20T21:34:33.237751388Z","releaseUser":{"email":"briansauceda17@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp6g6fAkvzSVik14UKx3U-ATlQ3l7A1BAZ-hZrUC1Q"}}
+[debug] [2023-01-20T21:34:33.905Z] [hosting] release: {"name":"projects/586716879771/sites/nost-beta/channels/live/releases/1674250473237751","version":{"name":"projects/586716879771/sites/nost-beta/versions/0a293f150a14b2f0","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-01-20T21:33:58.624185Z","createUser":{"email":"briansauceda17@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp6g6fAkvzSVik14UKx3U-ATlQ3l7A1BAZ-hZrUC1Q"},"finalizeTime":"2023-01-20T21:34:33.207143Z","finalizeUser":{"email":"briansauceda17@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp6g6fAkvzSVik14UKx3U-ATlQ3l7A1BAZ-hZrUC1Q"}},"type":"DEPLOY","releaseTime":"2023-01-20T21:34:33.237751388Z","releaseUser":{"email":"briansauceda17@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp6g6fAkvzSVik14UKx3U-ATlQ3l7A1BAZ-hZrUC1Q"}}
+[info] ✔  hosting[nost-beta]: release complete 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/nost-beta/overview
+[info] Hosting URL: https://nost-beta.web.app
+[debug] [2023-01-20T21:35:13.968Z] Error: Timed out.
+    at Timeout._onTimeout (/Users/briansauceda/.nvm/versions/node/v12.22.5/lib/node_modules/firebase-tools/lib/utils.js:253:49)
+    at listOnTimeout (node:internal/timers:564:17)
+    at process.processTimers (node:internal/timers:507:7)
+[error] 
+[error] Error: An unexpected error has occurred.
