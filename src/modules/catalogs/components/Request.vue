@@ -1,17 +1,17 @@
 <template>
     <div class="card nost-list nost-padding">
         <div class="row">
-            <div class="col-sm-10 nost-column">
+            <div class="col-sm-8 nost-column">
                 <span class="id" title="folio">{{ id }}</span>
                 <span class="desciption" title="descripción" >{{ Description }}</span>
                 <span class="Type" title="Tipo de solicitud">{{ Type }} - {{ Dependencie }} - {{ Fecha_Impresion }} </span>
             </div>
-            <div class="col-sm-2 butosn-container">
+            <div class="col-sm-4 butosn-container">
                 <button class="form-control btn btn-primary nost-list-buttons" v-b-modal.modal-xl @click="Edit" >
                     <i class="uil uil-pen"></i>
                 </button>
                 <button class="form-control btn btn-success nost-list-buttons" v-b-modal.Respuesta @click="Follow">
-                    <i class="uil uil-code-branch"></i>
+                    <i class="uil uil-file-check-alt"></i>
                 </button>
                 <button class="form-control btn btn-danger nost-list-buttons" title="Eliminar" @click="EliminarSolicitud">
                     <i class="uil uil-trash-alt"></i>
@@ -61,7 +61,7 @@
                 this.$router.push({name: 'Edit-Request', params: { id: this.id } })
             },
             Follow() {
-                this.$router.push('/Seguimiento')
+                this.$router.push({name: 'Seguimiento', params: { id: this.id } })
             }
         }
     }
@@ -122,6 +122,7 @@
     .butosn-container {
         display: flex;
         align-items: center;
-        column-gap: 1.2rem;
+        column-gap: 1rem;
+        padding-left: 10rem;
     }
 </style>

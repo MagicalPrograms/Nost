@@ -1,35 +1,6 @@
 
 export default () => ({
-    requests: [
-        {
-            id: '01',
-            Descripcion: 'Se solcita el motivo de por que cambiaron el color de las patrullas municipales',
-            DescripcionAdicional: 'Fundamento legal',
-            correo: 'info@gob.mx',
-            Dependencia: {
-                id: 4,
-                name: 'Dirección de planiación'
-            },
-            Tipo: {
-                id: 1,
-                name: 'Información Pública'
-            },
-            Accesibilidad: {
-                id: 0,
-                name: '-- Seleccióna una accesibilidad --'
-            },
-            Recepcion: {
-                id: 1,
-                name: 'Información disponible via PNT'
-            },
-            Fechas: {
-                fecha_impresion: '2022-01-01',
-                fecha_aclaracion: '2022-05-03',
-                fecha_prorroga: '2022-04-15',
-                fecha_respuesta: '2022-05-10'
-            }
-        },
-    ],
+    requests: [],
     OptionsType: [
         { name: '-- Seleccióna un Tipo --', id: 0 },
         { name: 'Información Pública', id: 1 },

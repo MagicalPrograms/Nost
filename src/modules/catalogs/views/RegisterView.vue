@@ -46,7 +46,7 @@
           </div>
           <div class="col-sm-4">
             Evidencia
-            <input type="file" id="file" ref="myFiles" class="form-control" multiple>
+            <input type="file" @change="onChangeFile" class="form-control" multiple>
           </div>
         </div>
         <div class="row">
@@ -121,7 +121,8 @@ export default {
           fecha_aclaracion: '',
           fecha_prorroga: '',
           fecha_respuesta: ''
-      }
+      },
+      File: {}
     }
     
     return {
@@ -153,6 +154,16 @@ export default {
           'Somting is worang! ' + error,
           'warning'
         )
+      }
+    },
+
+    onChangeFile(e) {
+      const file = e.target.files || e.dataTransfer.files
+      if(!file.length) {
+        return
+      } else {
+        this.main_frame.File = file[0]
+        console.log(this.main_frame.File);
       }
     },
 

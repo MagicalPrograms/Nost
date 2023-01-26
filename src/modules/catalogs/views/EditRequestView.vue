@@ -70,7 +70,10 @@
             </div>
             <div class="row" style="font-size: 14px">
             <div class="col-sm-8"></div>
-            <div class="col-sm-4">
+            <div class="col-sm-2">
+                <button class="form-control btn btn-danger" @click="regresar">Regresar</button>
+            </div>
+            <div class="col-sm-2">
                 <button class="form-control btn btn-success" @click="Guardar">Guardar</button>
             </div>
             </div>
@@ -113,7 +116,8 @@
                     fecha_aclaracion: '',
                     fecha_prorroga: '',
                     fecha_respuesta: ''
-                }
+                },
+                File: []
             }
 
             return {
@@ -121,22 +125,40 @@
             }
         },
         methods: {
-            ...mapMutations('catalogs', ['addNewRequest']),
+            ...mapMutations('catalogs', ['updateRequest']),
             Guardar() {
                 try{
-                    this.addNewRequest(this.main_frame)
-                    Swal.fire(
-                        '¡Buen Trabajo!',
-                        '¡Se ha guardado la solicitud!',
-                        'success'
-                    )
+                    Swal.fire({
+                        title: '¿Estas seguro de querer editar esta solicitud?',
+                        text: "Recuerda que una vez ejecutada esta acción no se podra recuperar la información anterior",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si, Eliminar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            this.updateRequest(this.main_frame)
+                            Swal.fire(
+                                '¡Buen Trabajo!',
+                                'Se ha Editado correctamente la solicitud',
+                                'success'
+                            )
+                            this.$router.push('/Request')
+                        } 
+                    })
+
                 } catch (error) {
                     Swal.fire(
-                        'Alert!',
-                        'Somting is worang! ' + error,
+                        '¡Alerta!',
+                        '¡Problema detectado! ' + error,
                         'warning'
                     )
                 }
+            },
+            regresar() {
+                this.$router.push('/Request')
             }
         },
         components: {
@@ -160,6 +182,8 @@
                 this.main_frame.Fechas.fecha_aclaracion = request[0].Fechas.fecha_aclaracion
                 this.main_frame.Fechas.fecha_prorroga = request[0].Fechas.fecha_prorroga
                 this.main_frame.Fechas.fecha_respuesta = request[0].Fechas.fecha_respuesta
+                this.main_frame.File = request[0].File
+                console.log(this.main_frame.File);
             }else {
                 Swal.fire({
                     title: '¡Alerta!',
