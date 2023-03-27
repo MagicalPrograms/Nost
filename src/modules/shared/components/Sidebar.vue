@@ -19,10 +19,10 @@
                         <i class="uil uil-clipboard-notes" ></i>
                         <span>Solicitudes</span>
                     </router-link>
-                    <router-link to="/formats" class="item item-open" v-b-tooltip.hover.right title="Formatos">
+                    <!-- <router-link to="/formats" class="item item-open" v-b-tooltip.hover.right title="Formatos">
                         <i class="uil uil-file" ></i>
                         <span>Formatos</span>
-                    </router-link>
+                    </router-link> -->
                     <router-link to="/Settings" class="item item-open" v-b-tooltip.hover.right title="Configuración">
                         <i class="uil uil-setting" ></i>
                         <span>Configuración</span>

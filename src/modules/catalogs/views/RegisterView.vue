@@ -141,6 +141,7 @@ export default {
     async SaveData() {
       //const ok = await this.SaveRequest(this.solicitud)
       try{
+        console.log(this.main_frame);
         this.addNewRequest(this.main_frame)
         Swal.fire(
           '¡Buen Trabajo!',

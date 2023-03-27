@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Editar Solicitud</h3>
-        <div class="card catalog-body">
+        <div class="card catalog-body mb-2">
             <div class="row">
             <div class="col-sm-4">
                 Fecha de impresion
@@ -69,10 +69,19 @@
             </div>
             </div>
             <div class="row" style="font-size: 14px">
-            <div class="col-sm-8"></div>
-            <div class="col-sm-4">
-                <button class="form-control btn btn-success" @click="Guardar">Guardar</button>
+                <div class="col-sm-8"></div>
+                <div v-show="user.rol == 'Administrador'" class="col-sm-4">
+                    <button class="form-control btn btn-success" @click="Guardar">Guardar</button>
+                </div>
             </div>
+        </div>
+
+        <h3>Oficio de Solicitud</h3>
+        <div class="card catalog-body mb-2">
+            <div class="row">
+                <div class="col">
+                    <iframe width="100%" height="500px" src="https://docs.google.com/document/d/12aPDIiN4UIKhbVurf__W9J1Y-DccBMKh/edit?usp=share_link&ouid=104466400130839559996&rtpof=true&sd=true" frameborder="0"></iframe>
+                </div>
             </div>
         </div>
 
@@ -87,6 +96,9 @@
 
     export default {
         data() {
+            const user = {
+                rol: 'Enlace'
+            }
             const main_frame = {
                 id: '',
                 Descripcion: '',
@@ -117,7 +129,8 @@
             }
 
             return {
-                main_frame
+                main_frame,
+                user
             }
         },
         methods: {
