@@ -14,7 +14,6 @@
 </template>
 
 <script>
-
     export default {
         
         data() {
@@ -27,6 +26,7 @@
         },
 
         methods: {
+
             changTheme(themeColor) {
                 switch(themeColor){
                     case 'original':
@@ -48,7 +48,7 @@
 
                 }
                 
-            }
+            },
         },
 
     }

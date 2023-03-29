@@ -1,5 +1,10 @@
 <template>
     <div class="col-sm-2">
+        <div class="cerrar-sesion" style="position: absolute; right: 0; padding: 0.5rem;">
+            <button class="form-control" @click="logout()" style="background-color: #9f2241; color: #FFF; border: none;">
+                <i class="uil uil-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div>
         <aside id="sidebar" class="side-bar">
             <div class="side-head">
                 <img src="../../../assets/notificacion.png" alt="logo" >
@@ -7,7 +12,7 @@
             </div>
             <div class="side-body">
                 <div class="items-list">
-                    <router-link to="/" class="item item-open" v-b-tooltip.hover.right title="Analiticas">
+                    <router-link to="analytics" class="item item-open" v-b-tooltip.hover.right title="Analiticas">
                         <i class="uil uil-chart" ></i>
                         <span>Analiticas</span>
                     </router-link>
@@ -42,7 +47,7 @@
 <script>
 //import Loading from '../components/LoadingView.vue'
 
-
+import { mapActions } from 'vuex'
 export default {
     data() {
         return {
@@ -51,6 +56,8 @@ export default {
     },
 
     methods: {
+        ...mapActions('auth', ['Logout']),
+
         CollapsSide() {
             document.getElementById("sidebar").classList.toggle("open");
             document.getElementById("contentside").classList.toggle("open");
@@ -65,7 +72,13 @@ export default {
             }
 
             console.log("object");
+        },
+
+        async logout() {
+            const { ok } = await this.Logout()
+            if( ok ) this.$router.push({name: 'login'})
         }
+
     }
 }
 </script>

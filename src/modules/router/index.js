@@ -1,10 +1,9 @@
 export default {
-    name: 'HomeLayout',
     component: () => import(/* webpackChunkName: "HomeLayout" */ '@/modules/shared/view/HomeLayout.vue'),
     children: [ 
         {
-            path: '/',
-            name: 'Analytics',
+            path: '/analytics',
+            name: 'analytics',
             component: () => import(/* webpackChunkName: "Analytics" */ '@/modules/analytics/views/AnalyticsView.vue'),
         },
         {
@@ -40,7 +39,8 @@ export default {
         {
             path: '*',
             name: 'not-found',
-            component: () => import(/* webpackChunkName: "HomeLayout" */ '@/modules/shared/view/HomeLayout.vue'),
+            component: () => import(/* webpackChunkName: "HomeLayout" */ '@/modules/error/ErrorLayOut.vue'),
         }
-    ]
+    ],
+    meta: { requiresAuth: true },
 }

@@ -2,22 +2,19 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 //import HomeView from '../views/HomeView.vue'
 import HomeRouter from '@/modules/router'
+import Auth from '@/modules/auth/router'
+import isAuthenticatedGuard from '@/modules/auth/router/auth-guard'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '',
-    name: 'HomeRouter',
     ...HomeRouter
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/auth',
+    ...Auth
   }
 ]
 
@@ -25,6 +22,10 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach(async(to, from, next) => {
+  await isAuthenticatedGuard(to, from, next)
 })
 
 export default router
