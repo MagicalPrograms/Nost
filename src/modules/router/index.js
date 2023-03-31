@@ -2,7 +2,7 @@ export default {
     component: () => import(/* webpackChunkName: "HomeLayout" */ '@/modules/shared/view/HomeLayout.vue'),
     children: [ 
         {
-            path: '/analytics',
+            path: '',
             name: 'analytics',
             component: () => import(/* webpackChunkName: "Analytics" */ '@/modules/analytics/views/AnalyticsView.vue'),
         },
