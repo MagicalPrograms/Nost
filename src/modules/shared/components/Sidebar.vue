@@ -12,7 +12,7 @@
             </div>
             <div class="side-body">
                 <div class="items-list">
-                    <router-link to="analytics" class="item item-open" v-b-tooltip.hover.right title="Analiticas">
+                    <router-link :to="{ name: 'analytics' }" class="item item-open" v-b-tooltip.hover.right title="Analiticas">
                         <i class="uil uil-chart" ></i>
                         <span>Analiticas</span>
                     </router-link>

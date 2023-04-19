@@ -38,3 +38,24 @@ export const addNewRequest = ( state, main ) => {
 export const deleteRequest = ( state ) => {
     state.requests.pop()
 }
+
+
+export const setDependencias = ( state, dependencia ) => {
+    state.OptionsDependencie = dependencia
+}
+
+export const setRecepcion = ( state, recepcion ) => {
+    state.OptionsRespuestas = recepcion
+}
+
+export const setAccesibilidad = ( state, Accesibilidad ) => {
+    state.OptionsDiscapacidad = Accesibilidad
+}
+
+export const setType = ( state, Type ) => {
+    state.OptionsType = Type
+}
+
+export const setRequests = ( state, requests ) => {
+    state.requests = requests
+}

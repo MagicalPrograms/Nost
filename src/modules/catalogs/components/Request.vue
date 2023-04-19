@@ -69,59 +69,59 @@
 
 <style scoped>
 .id{
-        font-size: 20px;
-        font-weight: 600;
-    }
+    font-size: 20px;
+    font-weight: 600;
+}
 
-    .desciption {
-        font-size: 15px;
-    }
+.desciption {
+    font-size: 15px;
+}
 
-    .nost-request-list {
-        display: flex;
-        flex-direction: column;
-    }
-    .nost-request-list .nost-list .Type {
-        color: #9b9b9b
-    }
+.nost-request-list {
+    display: flex;
+    flex-direction: column;
+}
+.nost-request-list .nost-list .Type {
+    color: #9b9b9b
+}
 
-    .nost-list {
-        font-size: 14px;
-        background-color: var(--bg-color-cards);
-        color: var(--tx-color);
-        cursor: pointer;
-    }
+.nost-list {
+    font-size: 14px;
+    background-color: var(--bg-color-cards);
+    color: var(--tx-color);
+    cursor: pointer;
+}
 
-    .nost-list .Type {
-        font-size: 12px;
-    }
-    .nost-padding {
-        padding: 1rem;
-    }
-    .nost-margins{
-        display: flex;
-        row-gap: .5rem;
-    }
-    .nost-column{
-        display: flex;
-        flex-direction: column;
-    }
-    .nost-list-buttons{
-        height: 60%;
-        width: 100%;
-        font-size: 1.2rem !important;
-    }
-    .nost-list-buttons .ico-item{
-        transition: all ease .10s;
-    }
-    .nost-list-buttons:hover .ico-item{
-        transform: rotate(12deg);
-        transition: all ease .10s;
-    }
+.nost-list .Type {
+    font-size: 12px;
+}
+.nost-padding {
+    padding: 1rem;
+}
+.nost-margins{
+    display: flex;
+    row-gap: .5rem;
+}
+.nost-column{
+    display: flex;
+    flex-direction: column;
+}
+.nost-list-buttons{
+    height: 60%;
+    width: 100%;
+    font-size: 1.2rem !important;
+}
+.nost-list-buttons .ico-item{
+    transition: all ease .10s;
+}
+.nost-list-buttons:hover .ico-item{
+    transform: rotate(12deg);
+    transition: all ease .10s;
+}
 
-    .butosn-container {
-        display: flex;
-        align-items: center;
-        column-gap: 1.2rem;
-    }
+.butosn-container {
+    display: flex;
+    align-items: center;
+    column-gap: 1.2rem;
+}
 </style>

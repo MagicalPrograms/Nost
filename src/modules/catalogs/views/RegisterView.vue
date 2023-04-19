@@ -121,7 +121,8 @@ export default {
           fecha_aclaracion: '',
           fecha_prorroga: '',
           fecha_respuesta: ''
-      }
+      },
+      Estatus: 1
     }
     
     return {
@@ -134,24 +135,25 @@ export default {
   },
   
   methods: {
-    ...mapActions('catalogs', ['SaveRequest']),
-    ...mapMutations('catalogs', ['addNewRequest']),
-
-
     async SaveData() {
       //const ok = await this.SaveRequest(this.solicitud)
-      try{
-        console.log(this.main_frame);
-        this.addNewRequest(this.main_frame)
+      const main = []
+      const file = this.$refs.myFiles.files[0]
+  
+      main.push(this.main_frame)
+      main.push(file)
+
+      const { ok, Error } = await this.SaveRequest(main)
+      if(ok) {
         Swal.fire(
           '¡Buen Trabajo!',
           '¡Se ha guardado la solicitud!',
           'success'
         )
-      } catch (error) {
+      } else {
         Swal.fire(
-          'Alert!',
-          'Somting is worang! ' + error,
+          '¡ALERTA!',
+          `Error: ${ Error }`,
           'warning'
         )
       }
@@ -167,10 +169,17 @@ export default {
       }
 
       this.main_frame.Fechas.fecha_impresion = this.Date
-    }
+    },
+
+    ...mapActions('catalogs', ['SaveRequest', 'GetDependencias', 'GetRecepcion', 'GetAccesibilidad', 'GetType']),
   },
 
-  mounted() {
+  async mounted() {
+    await this.GetDependencias()
+    await this.GetRecepcion()
+    await this.GetAccesibilidad()
+    await this.GetType()
+
     const fecha = new Date()
     var day = fecha.getDate();
     if(day < 10) {
@@ -187,8 +196,7 @@ export default {
     this.main_frame.Fechas.fecha_aclaracion = `${ year }-${ month }-${ day }`
     this.main_frame.Fechas.fecha_prorroga = `${ year }-${ month }-${ day }`
     this.main_frame.Fechas.fecha_respuesta = `${ year }-${ month }-${ day }`
-
-
+ 
     this.main_frame.Dependencia = this.OptionsDependencie[0]
     this.main_frame.Tipo = this.OptionsType[0]
     this.main_frame.Accesibilidad = this.OptionsDiscapacidad[0]

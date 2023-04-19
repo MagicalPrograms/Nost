@@ -2,19 +2,38 @@
     <div>
         <h3 class="title">Solcitudes</h3>
         <div class="row mb-2">
-            <div class="col-sm-5">
+            <div class="col-sm-6">
                 Buscar
                 <input type="text" class="form-control" v-model="term" placeholder="Eje. id, descripcion o dependencia">
             </div>
+            <div class="col-sm-3">
+                Desde
+                <input type="date" class="form-control" v-model="filtros.Desde" placeholder="Eje. id, descripcion o dependencia">
+            </div>
+            <div class="col-sm-3">
+                Hasta
+                <input type="date" class="form-control" v-model="filtros.Hasta" placeholder="Eje. id, descripcion o dependencia">
+            </div>
         </div>
-        <div v-if="requestByTerm.length > 0" v-for="item in requestByTerm" class="nost-request-list nost-margins" >   
-            <Request class="mb-2" :id="item.id" :Dependencie="item.Dependencia.name" :Fecha_Impresion="item.Fechas.fecha_impresion" :Description="item.Descripcion" :Type="item.Tipo.name" />
+        <div v-if="requests.length > 0">
+            <div v-for="item in requestByTerm" class="nost-request-list nost-margins" >   
+                <Request class="mb-2" 
+                    :id="item.Folio" 
+                    :Dependencie="item.NameDependencia" 
+                    :Fecha_Impresion="item.Fecha_Impresion" 
+                    :Description="item.Descripcion" 
+                    :Type="item.NameTipoSolicitud" 
+                />
+            </div>
+        </div>
+        <div v-else>
+            <h4>Sin Registros</h4>
         </div>
     </div>
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from 'vuex';
+import { mapState, mapMutations, mapGetters, mapActions } from 'vuex';
 import Request from '@/modules/catalogs/components/Request.vue'
 import Swal from 'sweetalert2'
 
@@ -27,6 +46,12 @@ export default {
             Estatus: 0,
         }
 
+        const filtros = {
+            Desde: '',
+            Hasta: '',
+            Todos: true
+        }
+
         return {
             term: '',
             Date: '',
@@ -34,7 +59,8 @@ export default {
                 Description: ''
             },
             resp,
-            list: false
+            list: false,
+            filtros
         }
     },
 
@@ -51,9 +77,11 @@ export default {
                 'success'
             )
         },
+
+        ...mapActions('catalogs', ['getRequests']),
     },
 
-    mounted() {
+    async mounted() {
         //this.main.Description = this.requests[0].Description
         if(this.requests.length != 0) {
             this.list = true
@@ -70,15 +98,30 @@ export default {
         const year = fecha.getFullYear();
         
         this.resp.Fecha_respuesta_depto = `${ year }-${ month }-${ day }`
+        this.resp.Fecha_respuesta_depto = `${ year }-${ month }-${ day }`
+        //this.filtros.desde = `${ year }-${ month }-${ day }`
+        //this.filtros.hasta = `${ year }-${ month }-${ day }`
+        this.filtros.Desde = `2023-01-01`
+        this.filtros.Hasta = `${ year }-${ month }-${ day }`
+
+        const { ok } = await this.getRequests(this.filtros)
+
+        if(!ok) {
+            Swal.fire(
+                '¡Alerta!',
+                'Error al intentar cargar las solicitudes. notifica al informatico..',
+                'warning'
+            )
+        }
     },
 
     computed: {
+        
         ...mapState('catalogs', ['requests']),
         ...mapGetters('catalogs', ['getRequestByTerm']),
         requestByTerm() {
             return this.getRequestByTerm( this.term )
         },
-        
     },
 }
 </script>
