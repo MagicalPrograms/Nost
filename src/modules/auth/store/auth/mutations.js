@@ -4,8 +4,8 @@ export const loginUser = (state, { nameuser, role, dependencia }) => {
 
     state.status = true,
     state.user = {
-        nameuser,
-        role
+        user_name: nameuser,
+        role: role
     }
     state.dependencia = dependencia
 }

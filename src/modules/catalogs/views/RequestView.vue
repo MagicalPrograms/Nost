@@ -15,14 +15,25 @@
                 <input type="date" class="form-control" v-model="filtros.Hasta" placeholder="Eje. id, descripcion o dependencia">
             </div>
         </div>
+        <div v-show="false" class="row mb-2" style="padding-left: 0.6rem; display: flex; gap: 1rem">
+            <div class="col-sm-1" style="background-color: #0e0874; padding: 1rem; border-radius: 5px; color: #fff">
+                Creados
+            </div>
+            <div class="col-sm-2" style="background-color: #4f17a4; width: 2rem; height: 2rem; border-radius: 50%">.</div>
+            <div class="col-sm-2" style="background-color: rgb(217, 72, 56); width: 2rem; height: 2rem; border-radius: 50%">.</div>
+            <div class="col-sm-2" style="background-color: rgb(169, 143, 113); width: 2rem; height: 2rem; border-radius: 50%">.</div>
+            <div class="col-sm-2" style="background-color: rgb(4, 198, 161); width: 2rem; height: 2rem; border-radius: 50%">.</div>
+        </div>
         <div v-if="requests.length > 0">
             <div v-for="item in requestByTerm" class="nost-request-list nost-margins" >   
                 <Request class="mb-2" 
-                    :id="item.Folio" 
+                    :id="item.Id"
+                    :Folio="item.Folio" 
                     :Dependencie="item.NameDependencia" 
                     :Fecha_Impresion="item.Fecha_Impresion" 
                     :Description="item.Descripcion" 
                     :Type="item.NameTipoSolicitud" 
+                    :Estatus="item.Estatus"
                 />
             </div>
         </div>
@@ -105,7 +116,7 @@ export default {
         this.filtros.Hasta = `${ year }-${ month }-${ day }`
 
         const { ok } = await this.getRequests(this.filtros)
-
+        
         if(!ok) {
             Swal.fire(
                 '¡Alerta!',

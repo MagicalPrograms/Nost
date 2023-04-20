@@ -17,8 +17,8 @@
         </div>
         <div class="row">
           <div class="col-sm-4">
-            No. de folio
-            <b-input v-model="main_frame.id"></b-input>
+            * No. de folio
+            <b-input :class="{'vasio' : main_frame.Folio == ''}" v-model="main_frame.Folio"></b-input>
           </div>
           <div class="col-sm-4">
             Tipo de solicitud
@@ -46,13 +46,13 @@
           </div>
           <div class="col-sm-4">
             Evidencia
-            <input type="file" id="file" ref="myFiles" class="form-control" multiple>
+            <input type="file" id="file" ref="myFiles" class="form-control" >
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
-            Datos de la solicitud
-            <b-textarea v-model="main_frame.Descripcion" class="ta-solicitud"></b-textarea>
+            * Datos de la solicitud
+            <b-textarea :class="{'vasio' : main_frame.Descripcion == ''}" v-model="main_frame.Descripcion" class="ta-solicitud"></b-textarea>
           </div>
           <div class="col-sm-6">
             Datos adicionales
@@ -96,7 +96,8 @@ export default {
   },
   data(){
     const main_frame = {
-      id: '',
+      id: 0,
+      Folio: '',
       Descripcion: '',
       DescripcionAdicional: '',
       correo: '',
@@ -131,31 +132,46 @@ export default {
   },
 
   computed: {
-    ...mapState('catalogs', ['Request', 'OptionsType', 'OptionsDiscapacidad', 'OptionsRespuestas', 'OptionsDependencie'])
+    ...mapState('catalogs', ['Request', 'OptionsType', 'OptionsDiscapacidad', 'OptionsRespuestas', 'OptionsDependencie']),
+    ...mapState('auth', ['user'])
   },
   
   methods: {
     async SaveData() {
-      //const ok = await this.SaveRequest(this.solicitud)
+      
       const main = []
-      const file = this.$refs.myFiles.files[0]
+      const file = this.$refs.myFiles.files[0] 
   
       main.push(this.main_frame)
       main.push(file)
 
-      const { ok, Error } = await this.SaveRequest(main)
-      if(ok) {
-        Swal.fire(
-          '¡Buen Trabajo!',
-          '¡Se ha guardado la solicitud!',
-          'success'
-        )
-      } else {
+      if(this.main_frame.Folio == '' || this.main_frame.Descripcion == '') {
+        console.log(this.main_frame.Folio);
+        console.log(this.main_frame.Descripcion);
         Swal.fire(
           '¡ALERTA!',
-          `Error: ${ Error }`,
+          'Los Campos con * son obligatorios es necesario llenarlos',
           'warning'
         )
+
+      } else {
+        const { ok, Error } = await this.SaveRequest(main)
+
+        if(ok) {
+          Swal.fire(
+            '¡Buen Trabajo!',
+            '¡Se ha guardado la solicitud!',
+            'success'
+          )
+
+          this.$router.push({ name: 'Request' })
+        } else {
+          Swal.fire(
+            '¡ALERTA!',
+            `Error: ${ Error }`,
+            'warning'
+          )
+        }
       }
     },
 
@@ -222,5 +238,9 @@ export default {
   textarea {
     height: 6rem !important;
     max-height: 6rem !important;
+  }
+
+  .vasio {
+    border: 1px solid red
   }
 </style>

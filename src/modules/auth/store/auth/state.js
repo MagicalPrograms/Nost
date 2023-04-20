@@ -4,5 +4,5 @@ export default () => ({
         user_name: '',
         role: ''
     },
-    dependencia: 0
+    dependencia: 0,
 })

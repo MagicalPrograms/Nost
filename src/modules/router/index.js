@@ -22,7 +22,7 @@ export default {
             component: () => import(/* webpackChunkName: "Edit-Request" */ '@/modules/catalogs/views/EditRequestView.vue'),
         },
         {
-            path: '/Seguimiento',
+            path: '/Seguimiento/:id',
             name: 'Seguimiento',
             component: () => import(/* webpackChunkName: "Seguimiento" */ '@/modules/catalogs/views/SegimientoView.vue'),
         },

@@ -1,8 +1,8 @@
 <template>
     <div class="col-sm-2">
-        <div class="cerrar-sesion" style="position: absolute; right: 0; padding: 1rem 2rem;">
+        <div class="cerrar-sesion" style="position: absolute; right: 0; padding: 1rem 2rem; margin-bottom: 2rem">
             <button class="form-control" @click="logout()" style="background-color: #9f2241; color: #FFF; border: none;">
-                <i class="uil uil-sign-out-alt"></i> Cerrar Sesión
+                <i class="uil uil-sign-out-alt"></i> Cerrar Sesión 
             </button>
         </div>
         <aside id="sidebar" class="side-bar">
@@ -47,14 +47,16 @@
 <script>
 //import Loading from '../components/LoadingView.vue'
 
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
     data() {
         return {
             icon: 'angles-left',
         }
     },
-
+    computed: {
+        ...mapState('auth', ['user']),
+    },
     methods: {
         ...mapActions('auth', ['Logout']),
 
@@ -71,15 +73,13 @@ export default {
                 document.getElementById("icon-close").classList.remove("uil-angle-double-left");
             }
 
-            console.log("object");
         },
 
         async logout() {
             const { ok } = await this.Logout()
             if( ok ) this.$router.push({name: 'login'})
         }
-
-    }
+    },
 }
 </script>
 

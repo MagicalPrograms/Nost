@@ -3,7 +3,6 @@
 //ejemplo es como si fueran metodos internos 
 
 export const addNewRequest = ( state, main ) => {
-    console.log(main);
     state.requests.push({
         id: main.id,
         Descripcion: main.Descripcion,
@@ -58,4 +57,24 @@ export const setType = ( state, Type ) => {
 
 export const setRequests = ( state, requests ) => {
     state.requests = requests
+}
+
+export const setOneRequest = ( state, request ) => {    
+    state.OneRequest = request
+}
+
+export const setArchivo = ( state, Archivo ) => {    
+    state.Archivo = Archivo
+}
+
+export const setResponse = ( state, Respuesta ) => {    
+    state.Respuesta = Respuesta
+}
+
+export const setProrroga = ( state, Prorroga ) => {    
+    state.Prorroga = Prorroga
+}
+
+export const setAclaracion = ( state, Aclaracion ) => {    
+    state.Aclaracion = Aclaracion
 }

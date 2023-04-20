@@ -1,8 +1,13 @@
 
 export default () => ({
     requests: [],
+    OneRequest: [],
     OptionsType: [],
     OptionsDiscapacidad: [],
     OptionsRespuestas: [],
-    OptionsDependencie: []
+    OptionsDependencie: [],
+    Respuesta: [],
+    Prorroga: [],
+    Aclaracion: [],
+    Archivo: ''
 })

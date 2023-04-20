@@ -1,19 +1,23 @@
 <template>
-    <div class="card nost-list nost-padding">
-        <div class="row">
+    <div class="card nost-list nost-padding" style="overflow: hidden;">
+        <div :class="`Color_${ Estatus }`" :style="Estilos"></div>
+        <div class="row" style="margin-left: 0.5rem">
             <div class="col-sm-10 nost-column">
-                <span class="id" title="folio">{{ id }}</span>
+                <span class="id" title="folio">{{ Folio }}</span>
                 <span class="desciption" title="descripción" >{{ Description }}</span>
                 <span class="Type" title="Tipo de solicitud">{{ Type }} - {{ Dependencie }} - {{ Fecha_Impresion }} </span>
             </div>
             <div class="col-sm-2 butosn-container">
-                <button class="form-control btn btn-primary nost-list-buttons" v-b-modal.modal-xl @click="Edit" >
+                <button class="form-control btn btn-primary nost-list-buttons" v-show="user_main.rol == 'Administrador'" v-b-modal.modal-xl @click="Edit" >
                     <i class="uil uil-pen"></i>
                 </button>
-                <button class="form-control btn btn-success nost-list-buttons" v-b-modal.Respuesta @click="Follow">
+                <button class="form-control btn btn-primary nost-list-buttons" v-show="user_main.rol != 'Administrador'" v-b-modal.modal-xl @click="Edit" >
+                    <i class="uil uil-eye"></i>
+                </button>
+                <button class="form-control btn btn-success nost-list-buttons" v-if="condition()" v-b-modal.Respuesta @click="Follow">
                     <i class="uil uil-code-branch"></i>
                 </button>
-                <button class="form-control btn btn-danger nost-list-buttons" title="Eliminar" @click="EliminarSolicitud">
+                <button class="form-control btn btn-danger nost-list-buttons" v-show="user_main.rol == 'Administrador'" title="Eliminar" @click="EliminarSolicitud">
                     <i class="uil uil-trash-alt"></i>
                 </button>
             </div>
@@ -22,17 +26,40 @@
 </template>
 
 <script>
-    import { mapMutations } from 'vuex'
+    import { mapMutations, mapState } from 'vuex'
     import Swal from 'sweetalert2'
     export default {
         props: {
             id: '',
+            Folio: '',
             Dependencie: '',
             Fecha_Impresion: '',
             Description: '',
             Type: '',
+            Estatus: 0
         },
+        data() {
+            const user_main = {
+                rol: ''
+            }
 
+            const Estilos = {
+                position: 'absolute',
+                border: '9px solid rgb(159, 34, 65)',
+                left: '-9px',
+                top: '-6px',
+                bottom: '-15px',
+                height: '500px'
+            }
+
+            return {
+                user_main,
+                Estilos
+            }
+        },
+        computed: { 
+            ...mapState('auth', ['user'])
+        },
         methods: {
             ...mapMutations('catalogs', ['deleteRequest']),
             EliminarSolicitud() {
@@ -57,12 +84,22 @@
                 })
             },
             Edit() {
-                console.log(this.id);
                 this.$router.push({name: 'Edit-Request', params: { id: this.id } })
             },
             Follow() {
-                this.$router.push('/Seguimiento')
+                this.$router.push({ name: 'Seguimiento', params: { id: this.id + '-' +this.Folio } })
+            },
+            condition() {
+                if(this.Estatus == 2 || this.Estatus == 3) {
+                    return false
+                } else {
+                    return true
+                }
             }
+        },
+
+        mounted() {
+            this.user_main.rol = this.user.role
         }
     }
 </script>
@@ -123,5 +160,15 @@
     display: flex;
     align-items: center;
     column-gap: 1.2rem;
+}
+
+.Color_1 {
+    border: 1rem solid #9f2241 !important;
+}
+.Color_2 {
+    border: 1rem solid rgb(4, 198, 161) !important;
+}
+.Color_3 {
+    border: 1rem solid rgb(217, 72, 56) !important;
 }
 </style>

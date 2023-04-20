@@ -5,7 +5,7 @@
             <div class="row">
             <div class="col-sm-4">
                 Fecha de impresion
-                <b-input class="date" type="date" v-model="main_frame.Fechas.fecha_impresion" ></b-input>
+                <b-input class="date" type="date" disabled v-model="main_frame.Fechas.fecha_impresion" ></b-input>
             </div>
             <div class="col-sm-4">
                 Dependencia responsable
@@ -17,7 +17,7 @@
             <div class="row">
             <div class="col-sm-4">
                 No. de folio
-                <b-input v-model="main_frame.id" ></b-input>
+                <b-input v-model="main_frame.Folio" ></b-input>
             </div>
             <div class="col-sm-4">
                 Tipo de solicitud
@@ -33,16 +33,20 @@
             </div>
             </div>
             <div class="row">
-            <div class="col-sm-4">
-                Medio para recibir notificaciones
-                <v-select label="name" :options="OptionsRespuestas" v-model="main_frame.Recepcion" >
-                    <div slot="no-options">No se encontraron opciones</div>
-                </v-select>
-            </div>
-            <div class="col-sm-8">
-                Correo
-                <input class="form-control" v-model="main_frame.correo" />
-            </div>
+                <div class="col-sm-4">
+                    Medio para recibir notificaciones
+                    <v-select label="name" :options="OptionsRespuestas" v-model="main_frame.Recepcion" >
+                        <div slot="no-options">No se encontraron opciones</div>
+                    </v-select>
+                </div>
+                <div class="col-sm-4">
+                    Correo
+                    <input class="form-control" v-model="main_frame.correo" />
+                </div>
+                <div class="col-sm-4">
+                    Evidencia
+                    <input type="file" id="file" ref="myFiles" class="form-control" multiple>
+                </div>
             </div>
             <div class="row">
             <div class="col-sm-6">
@@ -57,50 +61,63 @@
             <div class="row">
             <div class="col-sm-4">
                 Respuesta a su solicitud
-                <b-input class="date" type="date" v-model="main_frame.Fechas.fecha_respuesta" />
+                <b-input class="date" type="date" disabled v-model="main_frame.Fechas.fecha_respuesta" />
             </div>
             <div class="col-sm-4">
                 Fecha de aclaracion
-                <b-input class="date" type="date" v-model="main_frame.Fechas.fecha_aclaracion" />
+                <b-input class="date" type="date" disabled v-model="main_frame.Fechas.fecha_aclaracion" />
             </div>
             <div class="col-sm-4">
                 Fecha de prórroga
-                <b-input class="date" type="date" v-model="main_frame.Fechas.fecha_prorroga"/>
+                <b-input class="date" type="date" disabled v-model="main_frame.Fechas.fecha_prorroga"/>
             </div>
             </div>
             <div class="row" style="font-size: 14px">
                 <div class="col-sm-8"></div>
-                <div v-show="user.rol == 'Administrador'" class="col-sm-4">
-                    <button class="form-control btn btn-success" @click="Guardar">Guardar</button>
+                <div v-show="user_main.rol == 'Administrador'" class="col-sm-4">
+                    <button class="form-control btn btn-success" @click="SaveData">Guardar</button>
                 </div>
             </div>
         </div>
 
         <h3>Oficio de Solicitud</h3>
         <div class="card catalog-body mb-2">
-            <div class="row">
-                <div class="col">
-                    <iframe width="100%" height="500px" src="https://docs.google.com/document/d/12aPDIiN4UIKhbVurf__W9J1Y-DccBMKh/edit?usp=share_link&ouid=104466400130839559996&rtpof=true&sd=true" frameborder="0"></iframe>
-                </div>
+            <div class="row" style="height: 500px;">
+                <iframe  src="https://docs.google.com/document/d/12aPDIiN4UIKhbVurf__W9J1Y-DccBMKh/edit?usp=share_link&ouid=104466400130839559996&rtpof=true&sd=true"></iframe>
             </div>
         </div>
 
+        <h3>Respuesta</h3>
+        <div class="card catalog-body mb-2">
+            <div class="row">
+                <a style="color: #9f2241">{{ dato.Fecha }}</a>
+            </div>
+            <div class="row">
+                <p>{{ dato.Observacion }}</p>
+            </div>
+            <div class="row" style="height: 500px;">
+                <iframe src="https://docs.google.com/document/d/12aPDIiN4UIKhbVurf__W9J1Y-DccBMKh/edit?usp=share_link&ouid=104466400130839559996&rtpof=true&sd=true"></iframe>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import Swal from 'sweetalert2'
-    import { mapState, mapMutations } from 'vuex'
+    import { mapState, mapMutations, mapActions } from 'vuex'
     import select from 'vue-select'
     import 'vue-select/dist/vue-select.css';
 
     export default {
         data() {
-            const user = {
-                rol: 'Enlace'
+            const dato = []
+            const user_main = {
+                rol: ''
             }
+            const base64 = ''
             const main_frame = {
                 id: '',
+                Folio: '',
                 Descripcion: '',
                 DescripcionAdicional: '',
                 correo: '',
@@ -125,80 +142,138 @@
                     fecha_aclaracion: '',
                     fecha_prorroga: '',
                     fecha_respuesta: ''
-                }
+                },
+                Estatus: 0
             }
 
             return {
                 main_frame,
-                user
+                user_main,
+                dato
             }
+        },
+        computed: {
+            ...mapState('catalogs', [
+                'OneRequest', 
+                'OptionsType', 
+                'OptionsDiscapacidad', 
+                'OptionsRespuestas', 
+                'OptionsDependencie', 
+                'Archivo', 
+                'Respuesta',
+                'Prorroga',
+                'Aclaracion'
+            ]),
+            ...mapState('auth', ['user'])
         },
         methods: {
             ...mapMutations('catalogs', ['addNewRequest']),
-            Guardar() {
-                try{
-                    this.addNewRequest(this.main_frame)
+            ...mapActions('catalogs', [
+                'SaveRequest', 
+                'getRequest', 
+                'GetDependencias', 
+                'GetRecepcion', 
+                'GetAccesibilidad', 
+                'GetType', 
+                'GetFile', 
+                'GetResponse',
+                'GetProrroga',
+                'GetAclaracion'
+            ]),
+            
+            async SaveData() {
+                //const ok = await this.SaveRequest(this.solicitud)
+                const main = []
+                const file = this.$refs.myFiles.files[0]
+            
+                main.push(this.main_frame)
+                main.push(file)
+
+                const { ok, Error } = await this.SaveRequest(main)
+                if(ok) {
                     Swal.fire(
-                        '¡Buen Trabajo!',
-                        '¡Se ha guardado la solicitud!',
-                        'success'
+                    '¡Buen Trabajo!',
+                    '¡Se ha guardado la solicitud!',
+                    'success'
                     )
-                } catch (error) {
+                } else {
                     Swal.fire(
-                        'Alert!',
-                        'Somting is worang! ' + error,
-                        'warning'
+                    '¡ALERTA!',
+                    `Error: ${ Error }`,
+                    'warning'
                     )
                 }
-            }
+            },
+
+            /* cargarArchivo() {
+                const divvista = document.getElementById("visor");
+                const obj = document.createElement('object');
+                obj.data = this.Archivo;
+                obj.style.width = '100%';
+                obj.style.height = '100%'
+
+                divvista.appendChild(obj);
+            } */
         },
         components: {
             'v-select': select
         },
-        mounted() {
+        async mounted() {
             const { id } = this.$route.params
+            const { ok, error } = await this.getRequest(id)
+            await this.GetDependencias()
+            await this.GetRecepcion()
+            await this.GetAccesibilidad()
+            await this.GetType()
+            await this.GetFile(this.OneRequest.RutaEvidencia)
 
-            const request = this.requests.filter(x => x.id.toLowerCase().includes(id.toLocaleLowerCase()))
-            console.log(request);
-            if(request.length == 1){
-                this.main_frame.id = request[0].id
-                this.main_frame.Descripcion = request[0].Descripcion
-                this.main_frame.DescripcionAdicional = request[0].DescripcionAdicional
-                this.main_frame.correo = request[0].correo
-                this.main_frame.Dependencia = request[0].Dependencia
-                this.main_frame.Accesibilidad = request[0].Accesibilidad
-                this.main_frame.Tipo = request[0].Tipo
-                this.main_frame.Recepcion = request[0].Recepcion
-                this.main_frame.Fechas.fecha_impresion = request[0].Fechas.fecha_impresion
-                this.main_frame.Fechas.fecha_aclaracion = request[0].Fechas.fecha_aclaracion
-                this.main_frame.Fechas.fecha_prorroga = request[0].Fechas.fecha_prorroga
-                this.main_frame.Fechas.fecha_respuesta = request[0].Fechas.fecha_respuesta
-            }else {
-                Swal.fire({
-                    title: '¡Alerta!',
-                    text: "¡Se encontraron 2 o más solicitudes con el mismo identificador, solicite ayuda al enlace tecnologico!",
-                    icon: 'warning',
-                    showCancelButton: false,
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: '¡Ok!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        //redirect
-                        this.$router.push('/Request')
-                    }
-                })
+            switch(this.OneRequest.Estatus) {
+                case 2: 
+                    await this.GetResponse(id)
+                    this.dato = this.Respuesta
+                    break;
+                case 3: 
+                    await this.GetProrroga(id)
+                    this.dato = this.Prorroga
+                    break;
+                case 6: 
+                    await this.GetAclaracion(id)
+                    this.dato = this.Aclaracion
+                    break;
+                default:
+                    break;
             }
             
+            //this.cargarArchivo()
             
+            if(!ok) {
+                Swal.fire(
+                    '¡Alert!',
+                    '¡Algo esta mal! ' + error,
+                    'warning'
+                )
+            }
 
-            //this.main_frame.Dependencia = this.OptionsDependencie[0]
-            //this.main_frame.Tipo = this.OptionsType[0]
-            //this.main_frame.Accesibilidad = this.OptionsDiscapacidad[0],
-            //this.main_frame.Recepcion = this.OptionsRespuestas[0]
-        },
-        computed: {
-            ...mapState('catalogs', ['requests', 'OptionsType', 'OptionsDiscapacidad', 'OptionsRespuestas', 'OptionsDependencie']),
-        }
+            this.main_frame.id = id
+
+            this.main_frame.Folio = this.OneRequest.Folio
+            this.main_frame.correo = this.OneRequest.Correo
+            this.main_frame.Descripcion = this.OneRequest.Descripcion
+            this.main_frame.DescripcionAdicional = this.OneRequest.DescripcionAdicional
+
+            this.main_frame.Fechas.fecha_impresion = this.OneRequest.Fecha_Impresion
+            this.main_frame.Fechas.fecha_aclaracion = this.OneRequest.Fecha_Aclaracion
+            this.main_frame.Fechas.fecha_prorroga = this.OneRequest.Fecha_Prorroga
+            this.main_frame.Fechas.fecha_respuesta = this.OneRequest.Fecha_Respuesta
+            
+            this.main_frame.Dependencia = this.OptionsDependencie.find(({ id }) => id === this.OneRequest.Dependencia)
+            this.main_frame.Tipo = this.OptionsType.find(({ id }) => id === this.OneRequest.TipoSolicitud)
+            this.main_frame.Accesibilidad = this.OptionsDiscapacidad.find(({ id }) => id === this.OneRequest.Accesibilidad)
+            this.main_frame.Recepcion = this.OptionsRespuestas.find(({ id }) => id === this.OneRequest.MedioRecepcionNotificaciones)
+
+            this.main_frame.Estatus = this.OneRequest.Estatus
+            this.user_main.rol = this.user.role
+        },   
     }
 </script>
 

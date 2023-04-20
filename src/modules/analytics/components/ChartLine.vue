@@ -26,8 +26,6 @@
             }
         },
         mounted() {
-            console.log(this.Datas);
-            
             this.Datos = this.Datas
             this.Catalogs = this.Categos
 
