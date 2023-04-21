@@ -22,7 +22,7 @@
         </div>
 
         <h3 v-show="Target != ''">{{ Target }}</h3>
-        <h5>{{ Folio }}</h5>
+        <h5>Folio Solicitud: {{ Folio }}</h5>
         <div v-show="Target != ''" class="card catalog-body mb-2" style="padding: 1.5rem;">
             <div v-show="Target == 'Responder'">
                 <div class="row">
@@ -40,7 +40,7 @@
                 <div class="row">
                     <div class="col-sm-8"></div>
                     <div class="col-sm-4">
-                        <button class="form-control btn btn-success" @click="Responder">Responder</button>
+                        <button class="form-control btn btn-success" @click="Responde">Responder</button>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-sm-8"></div>
                     <div class="col-sm-4">
-                        <button class="form-control btn btn-success" @click="Prorrogar">Prorroga</button>
+                        <button class="form-control btn btn-success" @click="prorro">Prorroga</button>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 <div class="row">
                     <div class="col-sm-8"></div>
                     <div class="col-sm-4">
-                        <button class="form-control btn btn-success" @click="Aclarar">Aclaración</button>
+                        <button class="form-control btn btn-success" @click="aclara">Aclaración</button>
                     </div>
                 </div>
             </div>
@@ -137,6 +137,58 @@
                 this.Target = event.currentTarget.id;
             },
 
+            Responde() {
+                Swal.fire({
+                    title: '¿Estas seguro de dar respuesta a la solicitud?',
+                    text: "Es recomendable revisar la informacion que enviaras para que tu respuesta no sea rechazada",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, responder',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.Responder()
+                    } 
+                })
+            },
+
+            prorro() {
+                Swal.fire({
+                    title: '¿Estas seguro de solictar una prorroga?',
+                    text: "Toma en cunata los dias y analiza si es la mejor opción",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, prorrogar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.Prorrogar()
+                    } 
+                })
+            },
+            
+            aclara() {
+                Swal.fire({
+                    title: '¿Estas seguro de solictar una aclaracion?',
+                    text: "Toma en cunata los dias y analiza si es la mejor opción",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, aclarar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.Aclarar()
+                    } 
+                })
+            },
+
+
             async Responder() {
                 const id = this.$route.params.id.split("-")
                 console.log(id[0]);
@@ -158,7 +210,7 @@
                         'success'
                     ) 
 
-                    //this.$router.push({ name: 'Request' })
+                    this.$router.push({ name: 'Request' })
                 } else {
                     Swal.fire(
                         '¡Alerta!',
@@ -190,7 +242,7 @@
                         'success'
                     ) 
 
-                    //this.$router.push({ name: 'Request' })
+                    this.$router.push({ name: 'Request' })
                 } else {
                     Swal.fire(
                         '¡Alerta!',
@@ -204,7 +256,7 @@
                 const id = this.$route.params.id.split("-")
                 console.log(id[0]);
 
-                this.Aclaracion.IDAclaracion = parseInt(id[0])
+                this.Aclaracion.IDSolicitud = parseInt(id[0])
 
                 const files = this.$refs.myFilesAclaracion.files
                 console.log(files);
@@ -218,11 +270,11 @@
                 if(ok) {
                     Swal.fire(
                         '¡Buen Trabajo!',
-                        'Se ha solicitado la prorroga correctamente',
+                        'Se ha solicitado la aclaración correctamente',
                         'success'
                     ) 
 
-                    //this.$router.push({ name: 'Request' })
+                    this.$router.push({ name: 'Request' })
                 } else {
                     Swal.fire(
                         '¡Alerta!',

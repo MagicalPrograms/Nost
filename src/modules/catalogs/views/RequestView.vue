@@ -6,6 +6,9 @@
                 Buscar
                 <input type="text" class="form-control" v-model="term" placeholder="Eje. id, descripcion o dependencia">
             </div>
+        </div>
+
+        <div class="row mb-2"> 
             <div class="col-sm-3">
                 Desde
                 <input type="date" class="form-control" v-model="filtros.Desde" placeholder="Eje. id, descripcion o dependencia">
@@ -14,7 +17,13 @@
                 Hasta
                 <input type="date" class="form-control" v-model="filtros.Hasta" placeholder="Eje. id, descripcion o dependencia">
             </div>
+            <div class="col-sm-2">
+                <button class="form-control btn btn-primary" style="margin-top: 23px; width: 3rem;" title="Buscar" @click="Search">
+                    <i class="uil uil-search"></i>
+                </button>                
+            </div>
         </div>
+
         <div v-show="false" class="row mb-2" style="padding-left: 0.6rem; display: flex; gap: 1rem">
             <div class="col-sm-1" style="background-color: #0e0874; padding: 1rem; border-radius: 5px; color: #fff">
                 Creados
@@ -87,6 +96,11 @@ export default {
                 'Se ha editado correctamente la solicitud',
                 'success'
             )
+        },
+
+        async Search() {
+            this.filtros.Todos = false
+            await this.getRequests(this.filtros)
         },
 
         ...mapActions('catalogs', ['getRequests']),

@@ -76,7 +76,7 @@
         <div class="row" style="font-size: 14px">
           <div class="col-sm-8"></div>
           <div class="col-sm-4">
-            <button class="form-control btn btn-success" @click="SaveData">Guardar</button>
+            <button class="form-control btn btn-success" @click="Guardar">Guardar</button>
           </div>
         </div>
       </div>
@@ -137,6 +137,23 @@ export default {
   },
   
   methods: {
+    Guardar() {
+        Swal.fire({
+            title: '¿Estas seguro de registrar esta solicitud?',
+            text: "Esta seguro que los datos que has colocado son correctos",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, registrar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.SaveData()
+            } 
+        })
+    },
+
     async SaveData() {
       
       const main = []

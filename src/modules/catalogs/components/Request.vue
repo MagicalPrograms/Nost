@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import { mapMutations, mapState } from 'vuex'
+    import { mapActions, mapState } from 'vuex'
     import Swal from 'sweetalert2'
     export default {
         props: {
@@ -43,6 +43,12 @@
                 rol: ''
             }
 
+            const filtros = {
+                Desde: '20230101',
+                Hasta: '',
+                Todos: true
+            }
+
             const Estilos = {
                 position: 'absolute',
                 border: '9px solid rgb(159, 34, 65)',
@@ -54,14 +60,15 @@
 
             return {
                 user_main,
-                Estilos
+                Estilos,
+                filtros
             }
         },
         computed: { 
             ...mapState('auth', ['user'])
         },
         methods: {
-            ...mapMutations('catalogs', ['deleteRequest']),
+            ...mapActions('catalogs', ['deleteRequest', 'getRequests']),
             EliminarSolicitud() {
                 Swal.fire({
                     title: '¿Estas seguro de eliminar la solicitud?',
@@ -74,12 +81,7 @@
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        this.deleteRequest()
-                        Swal.fire(
-                            '¡Buen Trabajo!',
-                            'Se ha Eliminado correctamente la solicitud',
-                            'success'
-                        )
+                        this.Eliminar()
                     } 
                 })
             },
@@ -90,16 +92,49 @@
                 this.$router.push({ name: 'Seguimiento', params: { id: this.id + '-' +this.Folio } })
             },
             condition() {
-                if(this.Estatus == 2 || this.Estatus == 3) {
+                if(this.Estatus == 2 || this.Estatus == 3 || this.Estatus == 6) {
                     return false
                 } else {
                     return true
+                }
+            },
+            async Eliminar() {
+                const { ok, error } = await this.deleteRequest(this.id)
+
+                if(ok) {
+                    Swal.fire(
+                        '¡Buen Trabajo!',
+                        'Se ha Eliminado correctamente la solicitud',
+                        'success'
+                    )
+
+                    await this.getRequests(this.filtros)
+                } else {
+                    Swal.fire(
+                        '¡Alerta!',
+                        `Error: ${ error }`,
+                        'success'
+                    )
                 }
             }
         },
 
         mounted() {
             this.user_main.rol = this.user.role
+
+            const fecha = new Date()
+            var day = fecha.getDate();
+            if(day < 10) {
+                day = `0${day}`
+            }
+            var month = fecha.getMonth() + 1;
+            if(month <= 10) {
+                month = `0${month}`;
+            }
+            const year = fecha.getFullYear();
+
+            this.filtros.Hasta = `${ year }${ month }${ day }`
+
         }
     }
 </script>
@@ -170,5 +205,8 @@
 }
 .Color_3 {
     border: 1rem solid rgb(217, 72, 56) !important;
+}
+.Color_6 {
+    border: 1rem solid rgb(237, 230, 34) !important;
 }
 </style>

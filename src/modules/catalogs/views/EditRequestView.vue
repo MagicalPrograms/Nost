@@ -75,7 +75,7 @@
             <div class="row" style="font-size: 14px">
                 <div class="col-sm-8"></div>
                 <div v-show="user_main.rol == 'Administrador'" class="col-sm-4">
-                    <button class="form-control btn btn-success" @click="SaveData">Guardar</button>
+                    <button class="form-control btn btn-success" @click="Editar">Guardar</button>
                 </div>
             </div>
         </div>
@@ -83,7 +83,9 @@
         <h3>Oficio de Solicitud</h3>
         <div class="card catalog-body mb-2">
             <div class="row" style="height: 500px;">
-                <iframe  src="https://docs.google.com/document/d/12aPDIiN4UIKhbVurf__W9J1Y-DccBMKh/edit?usp=share_link&ouid=104466400130839559996&rtpof=true&sd=true"></iframe>
+                <div id="visor" class="row">
+
+                </div>
             </div>
         </div>
 
@@ -96,7 +98,9 @@
                 <p>{{ dato.Observacion }}</p>
             </div>
             <div class="row" style="height: 500px;">
-                <iframe src="https://docs.google.com/document/d/12aPDIiN4UIKhbVurf__W9J1Y-DccBMKh/edit?usp=share_link&ouid=104466400130839559996&rtpof=true&sd=true"></iframe>
+                <div id="visor2" class="row">
+
+                </div>
             </div>
         </div>
     </div>
@@ -180,6 +184,23 @@
                 'GetProrroga',
                 'GetAclaracion'
             ]),
+
+            Editar() {
+                Swal.fire({
+                    title: '¿Estas seguro de Editar esta solicitud?',
+                    text: "Esta opción edita toda la información de esta solicitud y no podra ser recuperada",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Editar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.SaveData()
+                    } 
+                })
+            },
             
             async SaveData() {
                 //const ok = await this.SaveRequest(this.solicitud)
@@ -196,6 +217,8 @@
                     '¡Se ha guardado la solicitud!',
                     'success'
                     )
+
+                    this.$router.push({ name: 'Request' })
                 } else {
                     Swal.fire(
                     '¡ALERTA!',
@@ -205,15 +228,24 @@
                 }
             },
 
-            /* cargarArchivo() {
+            cargarArchivo() {
                 const divvista = document.getElementById("visor");
+                const divvista2 = document.getElementById("visor2");
+
                 const obj = document.createElement('object');
+                const obj2 = document.createElement('object2');
+
                 obj.data = this.Archivo;
                 obj.style.width = '100%';
                 obj.style.height = '100%'
+                
+                obj2.data = this.Archivo;
+                obj2.style.width = '100%';
+                obj2.style.height = '100%'
 
                 divvista.appendChild(obj);
-            } */
+                divvista2.appendChild(obj2);
+            }
         },
         components: {
             'v-select': select
@@ -244,7 +276,7 @@
                     break;
             }
             
-            //this.cargarArchivo()
+            this.cargarArchivo()
             
             if(!ok) {
                 Swal.fire(

@@ -95,6 +95,8 @@ export const GetType = async({ commit }) => {
 export const GetFile = async({ commit }, ruta) => {
     const { data } = await axios.get(`${ urlbase }/Solicitud/CargaArchivo/?nombrearchivo=${ ruta }`)
     
+    console.log(data);
+
     commit('setArchivo', data)
 
     return { ok: true }
@@ -102,6 +104,7 @@ export const GetFile = async({ commit }, ruta) => {
 
 
 export const getRequests = async({ commit }, main) => {
+    console.log(main);
     let desde = main.Desde.replace('-', '')
     let hasta = main.Hasta.replace('-', '')
 
@@ -113,7 +116,7 @@ export const getRequests = async({ commit }, main) => {
         hasta = hasta.replace('-', '')    
     }
     
-    const { data } = await axios.get(`${ urlbase }/Solicitud/CargaListaSolicitudes/?Desde=${ desde }&Hasta=${ hasta }&Todos=${ main.Todos }`)
+    const { data } = await axios.get(`${ urlbase }/Solicitud/CargaListaSolicitudes/?desde=${ desde }&hasta=${ hasta }&todos=${ main.Todos }`)
 
     if(data.Status != 'ok') {
         return { ok: false }
@@ -231,6 +234,18 @@ export const GetAclaracion = async({commit}, id) => {
     } 
 
     commit('setAclaracion', data.Dato)
+
+    return { ok: true, error: '' }
+}
+
+export const deleteRequest = async(_, id) => {
+    console.log(id);
+    const { data } = await axios.post(`${ urlbase }/Solicitud/CancelaSolicitud/?idsolicitud=${ id }`)
+    console.log(data);
+
+    if(data.Status != 'ok') {
+        return { ok: false, error: data.Error }
+    } 
 
     return { ok: true, error: '' }
 }
