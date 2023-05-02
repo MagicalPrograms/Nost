@@ -4,12 +4,16 @@ const isAuthenticatedGuard = async(to, from, next) => {
     if(to.matched.some(record => record.meta.requiresAuth)) {
         const { ok } = await store.dispatch('auth/checkAutentication')
 
+        console.log(ok);
+
         if(ok) next()
         else next({ name: 'login' })
 
     } else if(to.matched.some(record => record.meta.login)) {
 
         const { ok } = await store.dispatch('auth/checkAutentication')
+
+        console.log(ok);
 
         if(ok && to.path === '/auth/login') {
             next({ name: 'analytics' })
